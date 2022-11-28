@@ -20,11 +20,11 @@ def forLoopSolution(n: int) -> int:
 
     return cur
 
-def mapSolution(n: int) -> int:
-    distinct_ways = {
-        1: 1,
-        2: 2,
-    }
+def tabulation(n: int) -> int:
+    distinct_ways = [0] * (n + 1)
+    distinct_ways[0] = 0
+    distinct_ways[1] = 1
+    distinct_ways[2] = 2
     
     for i in range(3, n+1):
         distinct_ways[i] = distinct_ways[i-1] + distinct_ways[i-2]
@@ -36,8 +36,8 @@ class Solution:
         if n <= 3:
             return n
         
-        return recursiveSolution(n-3, 2, 1)
+        #return recursiveSolution(n-3, 2, 1)
         # return recursiveSolution2(n)
         # return forLoopSolution(n)
-        # return mapSolution(n)
+        return tabulation(n)
         
