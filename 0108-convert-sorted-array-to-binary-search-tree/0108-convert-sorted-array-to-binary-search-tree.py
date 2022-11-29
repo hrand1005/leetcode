@@ -18,4 +18,3 @@ class Solution:
         node.right = self.sortedArrayToBST(nums[median_index+1:])
         
         return node
-            
