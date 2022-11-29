@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+"""
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         return self.checkMirrored(root.left, root.right)
@@ -19,3 +20,31 @@ class Solution:
             return False
 
         return self.checkMirrored(node1.left, node2.right) and self.checkMirrored(node1.right, node2.left)
+"""
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if root == None:
+            return True
+        
+        stack = [root.left, root.right]
+        
+        while stack:
+            right = stack.pop()
+            left = stack.pop()
+            
+            if right == None and left == None:
+                continue
+                
+            if right == None or left == None:
+                return False
+                
+            if right.val != left.val:
+                return False
+            
+            stack.extend([left.right, right.left])
+            stack.extend([left.left, right.right])
+                
+        return True
+                
+                
