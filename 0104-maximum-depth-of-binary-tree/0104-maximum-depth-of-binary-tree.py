@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+"""
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if root == None:
@@ -25,3 +26,14 @@ class Solution:
                 stack.append((node.right, depth+1))
         
         return max(path_lengths)
+"""   
+    
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        return self.recursiveHelper(root, 0)
+
+    def recursiveHelper(self, node: Optional[TreeNode], depth) -> int:
+        if node == None:
+            return depth
+        
+        return max(self.recursiveHelper(node.left, depth+1), self.recursiveHelper(node.right, depth+1))
