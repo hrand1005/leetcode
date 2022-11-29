@@ -7,6 +7,7 @@
  * }
  */
 
+
 func maxInt(ints []int) int {
     max := 0
     for _, v := range ints {
@@ -17,6 +18,20 @@ func maxInt(ints []int) int {
     return max
 }
 
+func maxDepth(root *TreeNode) int {
+    if root == nil {
+        return 0
+    }
+    
+    pathLengths := []int{
+        maxDepth(root.Left) + 1,
+        maxDepth(root.Right) + 1,
+    }
+    
+    return maxInt(pathLengths)
+}
+
+/*
 type DepthNode struct {
     Node *TreeNode
     Depth int
@@ -63,3 +78,4 @@ func maxDepth(root *TreeNode) int {
     
     return maxInt(pathLengths)
 }
+*/
