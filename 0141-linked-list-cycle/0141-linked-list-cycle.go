@@ -6,6 +6,7 @@
  * }
  */
 
+/*
 func hasCycle(head *ListNode) bool {
     nodeSet := map[*ListNode]int{}
     cur := head
@@ -20,7 +21,7 @@ func hasCycle(head *ListNode) bool {
     }
     return false
 }
-/*
+*/
 func hasCycle(head *ListNode) bool {
     if head == nil {
         return false
@@ -49,4 +50,3 @@ func hasCycle(head *ListNode) bool {
     
     return false
 }
-*/
