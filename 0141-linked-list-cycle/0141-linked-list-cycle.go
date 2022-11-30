@@ -5,6 +5,22 @@
  *     Next *ListNode
  * }
  */
+
+func hasCycle(head *ListNode) bool {
+    nodeSet := map[*ListNode]int{}
+    cur := head
+    
+    for cur != nil {
+        if _, ok := nodeSet[cur]; ok {
+            return true
+        }
+        nodeSet[cur]++
+        
+        cur = cur.Next
+    }
+    return false
+}
+/*
 func hasCycle(head *ListNode) bool {
     if head == nil {
         return false
@@ -33,3 +49,4 @@ func hasCycle(head *ListNode) bool {
     
     return false
 }
+*/
