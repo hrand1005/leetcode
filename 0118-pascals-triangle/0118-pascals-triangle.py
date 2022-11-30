@@ -3,9 +3,8 @@ class Solution:
         if numRows == 0:
             return
         
-        row1 = [1]
-        result = [row1]
-        above = row1
+        above = [1]
+        result = [above]
         for i in range(1, numRows):
             new_row = []
             for j in range(i+1):
