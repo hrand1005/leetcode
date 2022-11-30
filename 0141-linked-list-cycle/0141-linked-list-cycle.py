@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+"""
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         val_set = {}
@@ -15,3 +16,18 @@ class Solution:
             cur = cur.next
         
         return False
+"""
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = slow
+
+        try:
+            while True:
+                if fast.next == slow or fast.next.next == slow:
+                    return True
+
+                slow = slow.next
+                fast = fast.next.next
+        except:
+            return False
