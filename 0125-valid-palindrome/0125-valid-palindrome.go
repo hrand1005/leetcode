@@ -24,5 +24,6 @@ func isPalindrome(s string) bool {
         
         i++; j--
     }
+    
     return true
 }
