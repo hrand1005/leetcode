@@ -1,8 +1,5 @@
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
-        if numRows == 0:
-            return
-        
         above = [1]
         result = [above]
         for i in range(1, numRows):
