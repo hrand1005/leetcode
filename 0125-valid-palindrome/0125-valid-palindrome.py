@@ -1,3 +1,4 @@
+"""
 VALID_CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
 class Solution:
@@ -22,3 +23,29 @@ class Solution:
                 i += 1
         
         return s
+"""
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        i = 0
+        j = len(s) - 1
+        while True:
+            
+            while not s[i].isalnum():
+                if i == j:
+                    return True
+                i += 1
+                
+            while not s[j].isalnum():
+                if i == j:
+                    return True
+                j -= 1
+            
+            if i >= j:
+                return True
+            
+            if s[i].lower() != s[j].lower():
+                print(f'i: {i}, j: {j}')
+                return False
+                
+            i += 1
+            j -= 1
