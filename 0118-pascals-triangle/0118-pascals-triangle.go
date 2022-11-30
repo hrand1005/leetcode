@@ -1,3 +1,4 @@
+/*
 func generate(numRows int) [][]int {
     result := initializeSlice(numRows)
     for i := 1; i < numRows; i++ {
@@ -17,4 +18,23 @@ func initializeSlice(rows int) [][]int {
         }
     }
     return s
+}
+*/
+
+func generate(numRows int) [][]int {
+    result := [][]int{}
+    above := []int{1}
+    for i := 0; i < numRows; i++ {
+        newRow := []int{}
+        for j := 0; j <= i; j++ {
+            if j == 0 || j == i {
+                newRow = append(newRow, 1)
+            } else {
+                newRow = append(newRow, above[j] + above[j-1])
+            }
+        }
+        result = append(result, newRow)
+        above = newRow
+    }
+    return result
 }
