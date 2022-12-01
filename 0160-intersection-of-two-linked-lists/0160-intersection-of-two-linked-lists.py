@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+"""
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         if headA == headB:
@@ -26,3 +27,21 @@ class Solution:
                 cur2 = cur2.next
         
         return None
+"""
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        cur1 = headA
+        cur2 = headB
+        
+        while cur1 != cur2:
+            if cur1 == None:
+                cur1 = headB
+            else:
+                cur1 = cur1.next
+                
+            if cur2 == None:
+                cur2 = headA
+            else:
+                cur2 = cur2.next
+                
+        return cur1
