@@ -5,6 +5,7 @@
  *     Next *ListNode
  * }
  */
+/*
 func getIntersectionNode(headA, headB *ListNode) *ListNode {
     visited := map[*ListNode]int{}
     
@@ -29,4 +30,26 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
     }
     
     return nil
+}
+*/
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+    
+    cur1 := headA
+    cur2 := headB
+    
+    for cur1 != cur2 {
+        if cur1 == nil {
+            cur1 = headB
+        } else {
+            cur1 = cur1.Next
+        }
+        
+        if cur2 == nil {
+            cur2 = headA
+        } else {
+            cur2 = cur2.Next
+        }
+    }
+    
+    return cur1
 }
