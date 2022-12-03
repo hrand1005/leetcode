@@ -35,5 +35,5 @@ class Solution:
         if len(columnTitle) == 0:
             return 0
         
-        this_val = POS_MAP[columnTitle[len(columnTitle)-1]]
-        return 26 ** multiplier * this_val + self.recursive(multiplier + 1, columnTitle[:-1])
+        last = POS_MAP[columnTitle[len(columnTitle)-1]]
+        return 26 ** multiplier * last + self.recursive(multiplier + 1, columnTitle[:-1])
