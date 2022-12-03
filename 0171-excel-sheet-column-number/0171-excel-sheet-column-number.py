@@ -55,6 +55,8 @@ class Solution:
         
 """
 
+# Ord converts unicode characters to ints. ord('A') --> 65, 
+# thus we can calculate the column with ord('A') - 64 --> 1
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
         col = 0
@@ -62,7 +64,7 @@ class Solution:
         j = 0
         while i >= 0:
             last_char = columnTitle[i]
-            col += 26 ** j * (ord(last_char) - 64)
+            col += 26 ** j * (ord(last_char) - 64) 
             i -= 1
             j += 1
         
