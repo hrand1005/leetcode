@@ -48,7 +48,7 @@ func titleToNumber(columnTitle string) int {
     columnNum := 0
     for _, v := range columnTitle {
         columnNum *= 26
-        columnNum += int(v - 'A') + 1
+        columnNum += int(v) - 64
     }
     
     return columnNum
