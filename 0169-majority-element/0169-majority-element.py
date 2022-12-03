@@ -1,11 +1,10 @@
+"""
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
         if len(nums) == 1:
             return nums[0]
         
-        majority = len(nums) // 2
-        if len(nums) % 2 == 1:
-            majority += 1
+        majority = (len(nums) // 2) + 1
             
         occurrences = {}
         
@@ -15,5 +14,22 @@ class Solution:
             else:
                 occurrences[nums[i]] += 1
             
-            if occurrences[nums[i]] >= majority:
+            if occurrences[nums[i]] == majority:
                 return nums[i]
+
+        return None   
+"""
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        num, counter = nums[0], 0
+        
+        for n in nums:
+            if n == num:
+                counter += 1
+            elif counter > 1:
+                counter -= 1 
+            else:
+                num, counter = n, 1
+            
+        return num      
