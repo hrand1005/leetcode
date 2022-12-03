@@ -27,6 +27,7 @@ POS_MAP = {
     'Z': 26,
 }
 
+"""
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
         return self.recursive(0, columnTitle)
@@ -37,3 +38,18 @@ class Solution:
         
         last = POS_MAP[columnTitle[len(columnTitle)-1]]
         return 26 ** multiplier * last + self.recursive(multiplier + 1, columnTitle[:-1])
+"""
+
+class Solution:
+    def titleToNumber(self, columnTitle: str) -> int:
+        col = 0
+        i = len(columnTitle) - 1
+        j = 0
+        while i >= 0:
+            last_char = columnTitle[i]
+            col += 26 ** j * POS_MAP[last_char]
+            i -= 1
+            j += 1
+        
+        return col
+        
