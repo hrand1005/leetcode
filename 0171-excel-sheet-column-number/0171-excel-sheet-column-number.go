@@ -13,6 +13,7 @@ func initCharMap() map[rune]int {
     return charMap
 }
 
+/*
 func titleToNumber(columnTitle string) int {
     charMap := initCharMap()
     colNum := 0
@@ -26,4 +27,19 @@ func titleToNumber(columnTitle string) int {
     }
     
     return colNum
+}
+*/
+
+func recursiveSolution(charMap map[rune]int, multiplier int, columnTitle string) int {
+    if len(columnTitle) == 0 {
+        return 0
+    }
+    lastChar := rune(columnTitle[len(columnTitle)-1])
+    thisVal := int(math.Pow(float64(26), float64(multiplier))) * charMap[lastChar]
+    return thisVal + recursiveSolution(charMap, multiplier+1, columnTitle[:len(columnTitle)-1])
+}
+
+func titleToNumber(columnTitle string) int {
+    charMap := initCharMap()
+    return recursiveSolution(charMap, 0, columnTitle)
 }
