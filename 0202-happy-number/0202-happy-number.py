@@ -1,3 +1,4 @@
+"""
 class Solution:
     def isHappy(self, n: int) -> bool:
         occurred = {}
@@ -16,3 +17,37 @@ class Solution:
             n = this_sum
         
         return False
+"""
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        if n == 1:
+            return True
+        
+        slow = n
+        fast = self.sum_squared_digits(slow)
+        
+        while slow != fast:
+            if fast == 1:
+                return True
+            
+            slow = self.sum_squared_digits(slow)
+            fast = self.sum_squared_digits(fast)
+            
+            # not really necessary to check if fast == 1
+            # because it will remain 1 in perpetuity
+            if fast == slow:
+                return False
+            
+            # go again for fast!
+            fast = self.sum_squared_digits(fast)
+            
+        return False    
+        
+    def sum_squared_digits(self, n: int) -> int:
+        digit_sum = 0
+        n_string = str(n)
+        for digit in n_string:
+            digit_sum += int(digit) ** 2
+            
+        return digit_sum    
