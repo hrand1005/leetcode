@@ -21,13 +21,10 @@ class Solution:
 
 class Solution:
     def isHappy(self, n: int) -> bool:
-        if n == 1:
-            return True
-        
         slow = n
         fast = self.sum_squared_digits(slow)
         
-        while slow != fast:
+        while slow != fast and fast != 1:
             if fast == 1:
                 return True
             
@@ -42,6 +39,9 @@ class Solution:
             # go again for fast!
             fast = self.sum_squared_digits(fast)
             
+        if fast == 1:
+            return True
+        
         return False    
         
     def sum_squared_digits(self, n: int) -> int:
