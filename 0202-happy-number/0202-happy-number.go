@@ -1,7 +1,3 @@
-import (
-    "fmt"
-)
-
 func calcNext(n int) int {
     digits := []int{}
     for n >= 10 {
@@ -18,6 +14,7 @@ func calcNext(n int) int {
     return next
 }
 
+/*
 func isHappy(n int) bool {
     occurred := map[int]bool{}
     
@@ -27,6 +24,29 @@ func isHappy(n int) bool {
         }
         occurred[n] = true
         n = calcNext(n)
+    }
+    
+    return true
+}
+*/
+
+func isHappy(n int) bool {
+    slow := n
+    fast := calcNext(slow)
+    
+    for fast != 1 {
+        if fast == slow {
+            return false
+        }
+        
+        slow = calcNext(slow)
+        fast = calcNext(fast)
+        
+        if fast == slow {
+            return false
+        }
+        
+        fast = calcNext(fast)
     }
     
     return true
