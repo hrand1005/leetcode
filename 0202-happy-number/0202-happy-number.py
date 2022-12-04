@@ -6,6 +6,7 @@ class Solution:
             occurred[n] = True
             num_string = str(n)
             this_sum = 0
+            
             for digit in num_string:
                 this_sum += int(digit) ** 2
         
