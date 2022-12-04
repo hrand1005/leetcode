@@ -14,7 +14,6 @@ func hammingWeight(num uint32) int {
     
     return count + 1
 }
-*/
 
 func hammingWeight(num uint32) int {
     if num == 0 {
@@ -30,4 +29,15 @@ func hammingWeight(num uint32) int {
     }
     
     return count + 1
+}
+*/
+
+func hammingWeight(num uint32) int {
+    count := 0
+    for num != 0 {
+        count += int(num & 1)
+        num >>= 1
+    }
+    
+    return count
 }
