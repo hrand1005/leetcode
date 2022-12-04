@@ -25,9 +25,6 @@ class Solution:
         fast = self.sum_squared_digits(slow)
         
         while slow != fast and fast != 1:
-            if fast == 1:
-                return True
-            
             slow = self.sum_squared_digits(slow)
             fast = self.sum_squared_digits(fast)
             
