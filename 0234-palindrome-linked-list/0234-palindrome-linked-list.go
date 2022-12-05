@@ -32,15 +32,18 @@ func isPalindrome(head *ListNode) bool {
     fast := slow
     
     for fast != nil && fast.Next != nil {
+        // advance 'fast' at double the rate
         fast = fast.Next
         fast = fast.Next
         
+        // reverse the first half of the list
         slowNext := slow.Next
         slow.Next = prev
         prev = slow
         slow = slowNext
     }
     
+    // advance past midpoint for odd-length lists
     if fast != nil {
         slow = slow.Next
     }
