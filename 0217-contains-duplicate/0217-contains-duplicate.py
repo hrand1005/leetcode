@@ -1,3 +1,4 @@
+"""
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         occurred = {}
@@ -8,3 +9,8 @@ class Solution:
             occurred[n] = True
         
         return False
+"""
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        return len(nums) != len(set(nums))
