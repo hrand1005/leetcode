@@ -5,6 +5,8 @@
  *     Next *ListNode
  * }
  */
+
+/*
 func isPalindrome(head *ListNode) bool {
     candidate := []int{}
     cur := head
@@ -18,6 +20,41 @@ func isPalindrome(head *ListNode) bool {
         if candidate[i] != candidate[len(candidate)-1-i] {
             return false
         }
+    }
+    
+    return true
+}
+*/
+
+func isPalindrome(head *ListNode) bool {
+    prev := new(ListNode)
+    slow := head
+    fast := slow
+    
+    for fast != nil && fast.Next != nil {
+        fast = fast.Next
+        fast = fast.Next
+        
+        slowNext := slow.Next
+        slow.Next = prev
+        prev = slow
+        slow = slowNext
+    }
+    
+    if fast != nil {
+        slow = slow.Next
+    }
+    
+    firstHalf := prev
+    secondHalf := slow
+    
+    for secondHalf != nil {
+        if firstHalf.Val != secondHalf.Val {
+            return false
+        }
+        
+        secondHalf = secondHalf.Next
+        firstHalf = firstHalf.Next
     }
     
     return true
