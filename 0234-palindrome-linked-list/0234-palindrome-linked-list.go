@@ -27,7 +27,7 @@ func isPalindrome(head *ListNode) bool {
 */
 
 func isPalindrome(head *ListNode) bool {
-    prev := new(ListNode)
+    var prev *ListNode
     slow := head
     fast := slow
     
@@ -48,13 +48,13 @@ func isPalindrome(head *ListNode) bool {
     firstHalf := prev
     secondHalf := slow
     
-    for secondHalf != nil {
+    for firstHalf != nil {
         if firstHalf.Val != secondHalf.Val {
             return false
         }
         
-        secondHalf = secondHalf.Next
         firstHalf = firstHalf.Next
+        secondHalf = secondHalf.Next
     }
     
     return true
