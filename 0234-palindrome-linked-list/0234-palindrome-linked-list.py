@@ -27,13 +27,16 @@ class Solution:
         fast = slow
         
         while fast and fast.next:
+            # increment fast at double the rate
             fast = fast.next.next
             
+            # reverse each element in the first half
             slow_next = slow.next
             slow.next = prev
             prev = slow
             slow = slow_next
         
+        # for odd numbers of elements, don't compare the middle element
         if fast:
             slow = slow.next
             
