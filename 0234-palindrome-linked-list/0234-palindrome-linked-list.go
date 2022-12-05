@@ -36,7 +36,7 @@ func isPalindrome(head *ListNode) bool {
         fast = fast.Next
         fast = fast.Next
         
-        // reverse the first half of the list
+        // reverse the first half of the list while advancing
         slowNext := slow.Next
         slow.Next = prev
         prev = slow
