@@ -1,3 +1,4 @@
+/*
 import (
     "sort"
 )
@@ -13,8 +14,8 @@ func containsDuplicate(nums []int) bool {
     
     return false
 }
+*/
 
-/*
 func containsDuplicate(nums []int) bool {
     count := map[int]int{}
     
@@ -27,5 +28,4 @@ func containsDuplicate(nums []int) bool {
     
     return false
 }
-*/
 
