@@ -15,9 +15,6 @@ class Solution:
                 return 0
             
             x -= x % 10
-           # if x == 0:
-           #     return int(result) * multiplier
-            
             x /= 10
         
         return int(result) * multiplier
