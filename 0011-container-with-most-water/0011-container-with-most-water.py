@@ -52,8 +52,7 @@ class Solution:
         while l < r:
             depth = min(height[l], height[r])
             length = r - l
-            water = length * depth
-            max_water = max(max_water, water)
+            max_water = max(max_water, length * depth)
             
             if height[l] < height[r]:
                 l += 1
