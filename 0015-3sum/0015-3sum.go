@@ -24,6 +24,8 @@ func threeSum(nums []int) [][]int {
     
     solutionSet := NewSet()
     
+    // if 0 exists in 'nums', that means there may exist some 3-sum
+    // solution (-n, 0, n) if -n is in negativeMap and n is in positiveMap
     if len(zero) > 0 {
         for nkey, _ := range negativeMap {
             comp := nkey * -1
@@ -36,10 +38,13 @@ func threeSum(nums []int) [][]int {
         }
     }
     
+    // if there are enough zeroes we can add the special solution set (0, 0, 0)
     if len(zero) > 2 {
         solutionSet.Add([]int{0, 0, 0})
     }
     
+    // check whether each negative pair has a complement positive
+    // that sums to 0, and add it to the solution set
     for i := 0; i < len(negative); i++ {
         for j := i+1; j < len(negative); j++ {
             comp := (negative[j] + negative[i]) * -1
@@ -49,6 +54,8 @@ func threeSum(nums []int) [][]int {
         }
     }
     
+    // check whether each positive pair has a complement negative 
+    // that sums to 0, and add it to the solution set
     for i := 0; i < len(positive); i++ {
         for j := i+1; j < len(positive); j++ {
             comp := (positive[j] + positive[i]) * -1
@@ -69,12 +76,13 @@ func NewSet() *Set {
     }
 }
 
-// Internally, we represent triplet pairs as strings 
-// so that they're hashable
 type Set struct {
     m map[string]int
 }
 
+// Add sorts our int slice and then converts it to a
+// string. This is how we convert our triplet int slice
+// into a hashable data type.
 func (s *Set) Add(elem []int) {
     sort.Ints(elem)
     
@@ -91,6 +99,9 @@ func (s *Set) Add(elem []int) {
     s.m[key]++
 }
 
+// ToSlice creates our int-slice solution set by taking
+// each key in our internal map, and converting it back
+// into an int-slice.
 func (s *Set) ToSlice() [][]int {
     result := make([][]int, 0, len(s.m))
     
