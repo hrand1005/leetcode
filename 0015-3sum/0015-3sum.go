@@ -6,17 +6,17 @@ import (
 
 func threeSum(nums []int) [][]int {
     negative, zero, positive := []int{}, []int{}, []int{}
-    negativeSet, positiveSet := map[int]int{}, map[int]int{}
+    negativeMap, positiveMap := map[int]int{}, map[int]int{}
     
     // divide nums into slices of negatives, positives, and zeros
-    // additionally, add negative and positive to sets for O(1) lookups
+    // additionally, add negative and positive to maps for O(1) lookups
     for _, v := range nums {
         if v < 0 {
             negative = append(negative, v)
-            negativeSet[v]++
+            negativeMap[v]++
         } else if v > 0 {
             positive = append(positive, v)
-            positiveSet[v]++
+            positiveMap[v]++
         } else {
             zero = append(zero, v)
         }
@@ -25,9 +25,9 @@ func threeSum(nums []int) [][]int {
     solutionSet := NewSet()
     
     if len(zero) > 0 {
-        for nkey, _ := range negativeSet {
+        for nkey, _ := range negativeMap {
             comp := nkey * -1
-            for pkey, _ := range positiveSet {
+            for pkey, _ := range positiveMap {
                 if pkey == comp {
                     solutionSet.Add([]int{nkey, 0, pkey})
                     break
@@ -43,7 +43,7 @@ func threeSum(nums []int) [][]int {
     for i := 0; i < len(negative); i++ {
         for j := i+1; j < len(negative); j++ {
             comp := (negative[j] + negative[i]) * -1
-            if _, ok := positiveSet[comp]; ok {
+            if _, ok := positiveMap[comp]; ok {
                 solutionSet.Add([]int{negative[j], negative[i], comp})
             }
         }
@@ -52,7 +52,7 @@ func threeSum(nums []int) [][]int {
     for i := 0; i < len(positive); i++ {
         for j := i+1; j < len(positive); j++ {
             comp := (positive[j] + positive[i]) * -1
-            if _, ok := negativeSet[comp]; ok {
+            if _, ok := negativeMap[comp]; ok {
                 solutionSet.Add([]int{positive[j], positive[i], comp})
             }
         }
@@ -61,12 +61,16 @@ func threeSum(nums []int) [][]int {
     return solutionSet.ToSlice()
 }
 
+// NewSet creates a new, empty set intended to store
+// triplet-pairs of integers
 func NewSet() *Set {
     return &Set{
         m: make(map[string]int, 0),
     }
 }
 
+// Internally, we represent triplet pairs as strings 
+// so that they're hashable
 type Set struct {
     m map[string]int
 }
@@ -74,12 +78,16 @@ type Set struct {
 func (s *Set) Add(elem []int) {
     sort.Ints(elem)
     
-    key := ""
-    for _, v := range elem {
-        key += strconv.Itoa(v) + ","
-    }
-    key = key[:len(key)-1] // remove last comma
+    b := strings.Builder{}
     
+    for i := 0; i < len(elem); i++ {
+        b.WriteString(strconv.Itoa(elem[i]))
+        if i < len(elem) - 1 {
+            b.WriteString(",")
+        }
+    }
+    
+    key := b.String()
     s.m[key]++
 }
 
