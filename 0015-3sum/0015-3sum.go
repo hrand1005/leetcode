@@ -121,9 +121,8 @@ func (s *Set) ToSlice() [][]int {
 */
 
 func threeSum(nums []int) [][]int {
-    solutions := [][]int{}
-    
     sort.Ints(nums)
+    solutions := [][]int{}
     
     for i := 0; i < len(nums); i++ {
         if i > 0 && nums[i] == nums[i-1] {
@@ -137,22 +136,23 @@ func threeSum(nums []int) [][]int {
             if sum < 0 {
                 l++
                 continue
-            } 
-            
-            if sum > 0 {
+            } else if sum > 0 {
                 r--
                 continue
-            } 
-                
-            solutions = append(solutions, []int{nums[i], nums[l], nums[r]})
-            for l < r && nums[l] == nums[l+1] {
+            } else {
+                solutions = append(solutions, []int{nums[i], nums[l], nums[r]})
+                // increment left and decrement right until they are no longer
+                // at the index of a duplicate value
+                for l < r && nums[l] == nums[l+1] {
+                    l++
+                }
+                for l < r && nums[r] == nums[r-1] {
+                    r--
+                }
                 l++
-            }
-            for l < r && nums[r] == nums[r-1] {
                 r--
             }
-            l++
-            r--
+                
         }
     }
     
