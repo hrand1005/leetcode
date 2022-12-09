@@ -1,3 +1,4 @@
+/*
 import (
     "sort"
     "strconv"
@@ -116,4 +117,44 @@ func (s *Set) ToSlice() [][]int {
     }
     
     return result
+}
+*/
+
+func threeSum(nums []int) [][]int {
+    solutions := [][]int{}
+    
+    sort.Ints(nums)
+    
+    for i := 0; i < len(nums); i++ {
+        if i > 0 && nums[i] == nums[i-1] {
+            continue
+        }
+        
+        l, r := i+1, len(nums) - 1
+        for l < r {
+            sum := nums[i] + nums[l] + nums[r]
+            
+            if sum < 0 {
+                l++
+                continue
+            } 
+            
+            if sum > 0 {
+                r--
+                continue
+            } 
+                
+            solutions = append(solutions, []int{nums[i], nums[l], nums[r]})
+            for l < r && nums[l] == nums[l+1] {
+                l++
+            }
+            for l < r && nums[r] == nums[r-1] {
+                r--
+            }
+            l++
+            r--
+        }
+    }
+    
+    return solutions
 }
