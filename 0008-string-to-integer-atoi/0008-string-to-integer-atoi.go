@@ -1,7 +1,5 @@
 import (
-    "fmt"
     "math"
-    "strings"
 )
 
 var runeToInt = map[rune]int{
@@ -18,7 +16,9 @@ var runeToInt = map[rune]int{
 }
 
 func myAtoi(s string) int {
-    s = strings.TrimLeft(s, " ")
+    for len(s) > 0 && rune(s[0]) == ' ' {
+        s = s[1:]
+    }
     
     if len(s) == 0 {
         return 0
@@ -51,8 +51,8 @@ func myAtoi(s string) int {
     return result * multiplier
 }
 
-// willOverflow returns whether the int v will 
-// overflow, and which limit it will exceed
+// willOverflow returns the limit exceeded,
+// and ok if overflow occurs
 func willOverflow(res, add int) (int, bool) {
     if res > math.MaxInt32 / 10 + 7 - add {
         return math.MaxInt32, true 
