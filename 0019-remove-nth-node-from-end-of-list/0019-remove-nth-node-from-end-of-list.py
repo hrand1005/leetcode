@@ -3,6 +3,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+"""
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         if head.next == None:
@@ -31,8 +32,30 @@ class Solution:
             cur = cur.next
         
         return head
-                
-                
+"""                
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        fast, slow = head, head
+        
+        for _ in range(n):
+            fast = fast.next
+            
+        if not fast:
+            return head.next
+        
+        while fast.next:
+            slow = slow.next
+            fast = fast.next
+        
+        rem = slow.next
+        next_node = rem.next
+        slow.next = next_node
+        
+        return head
+        
+        
+        
             
             
         
