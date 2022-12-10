@@ -31,7 +31,6 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
     }
     
     return nil
-    
 }
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
