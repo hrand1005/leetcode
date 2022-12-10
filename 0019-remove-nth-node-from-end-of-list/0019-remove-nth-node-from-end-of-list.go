@@ -5,6 +5,7 @@
  *     Next *ListNode
  * }
  */
+/*
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
     cur := head
     count := 1
@@ -33,7 +34,6 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
     
 }
 
-/*
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
     fast, slow := head, head
     
@@ -56,7 +56,6 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 }
 */
 
-/*
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
     nodeMap := map[int]*ListNode{}
     
@@ -77,4 +76,3 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
     
     return head
 }
-*/
