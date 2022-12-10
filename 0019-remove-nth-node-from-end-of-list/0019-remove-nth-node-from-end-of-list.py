@@ -32,7 +32,6 @@ class Solution:
             cur = cur.next
         
         return head
-"""                
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
@@ -53,7 +52,27 @@ class Solution:
         slow.next = next_node
         
         return head
+"""                
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        node_map = {}
         
+        i = 0
+        cur = head
+        while cur:
+            i += 1
+            node_map[i] = cur
+            cur = cur.next
+        
+        if (i-n) == 0:
+            return head.next
+        
+        before = node_map.get(i-n)
+        after = node_map.get(i-n+2)
+        before.next = after
+        
+        return head
         
         
             
