@@ -23,9 +23,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
     cur = head
     for i := 1; i < count + 1; i++ {
         if i == stitchIndex {
-            tmp := cur.Next
-            next := tmp.Next
-            cur.Next = next
+            cur.Next = cur.Next.Next
             return head
         }
         
@@ -35,7 +33,9 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
     return nil
     
 }
+*/
 
+/*
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
     fast, slow := head, head
     
@@ -52,8 +52,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
         fast = fast.Next
     }
     
-    tmp := slow.Next
-    slow.Next = tmp.Next
+    slow.Next = slow.Next.Next
     
     return head
 }
@@ -75,8 +74,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
     }
     
     stitchStart := nodeMap[count-n]
-    tmp := stitchStart.Next
-    stitchStart.Next = tmp.Next
+    stitchStart.Next = stitchStart.Next.Next 
     
     return head
 }
