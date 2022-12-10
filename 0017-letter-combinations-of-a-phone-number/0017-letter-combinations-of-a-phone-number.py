@@ -9,6 +9,7 @@ NUM_MAP = {
     "9": "wxyz",
 }
 
+"""
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         if len(digits) == 0:
@@ -23,3 +24,22 @@ class Solution:
                     combos[i].append(combo + letter)
                     
         return combos[len(digits)-1]
+"""
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if len(digits) == 0:
+            return []
+        
+        this = list(NUM_MAP[digits[-1]])
+        
+        if len(digits) == 1:
+            return this
+        
+        combos = []
+        prev = self.letterCombinations(digits[:-1])
+        for letter in prev:
+            for c in this:
+                combos.append(letter + c)
+        
+        return combos
