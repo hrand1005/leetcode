@@ -33,5 +33,8 @@ class Solution:
             quotient += scale
             dividend -= count
             count = divisor
+            
+        if multiplier < 0:
+            quotient = 0 - quotient
         
-        return multiplier * quotient
+        return quotient
