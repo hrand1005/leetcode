@@ -6,14 +6,14 @@ class Solution:
         if dividend == 0:
             return 0
         
-        multiplier = 1
+        sign = 1
         if dividend < 0:
             dividend = 0 - dividend
-            multiplier = 0 - multiplier
+            sign = 0 - sign
             
         if divisor < 0:
             divisor = 0 - divisor
-            multiplier = 0 - multiplier
+            sign = 0 - sign
         
         quotient = 0
         count = divisor
@@ -23,18 +23,32 @@ class Solution:
                 count += count
                 scale += scale
             
-            if multiplier < 0:
-                if quotient > 0 - MIN_INT - scale:
-                    return MIN_INT
-            else:
-                if quotient > MAX_INT - scale:
-                    return MAX_INT
+            overflow, result = self.check_overflow(sign, quotient, scale, dividend)
+            if overflow:
+                return result
                 
             quotient += scale
             dividend -= count
             count = divisor
             
-        if multiplier < 0:
+        if sign < 0:
             quotient = 0 - quotient
         
         return quotient
+    
+    
+    def check_overflow(self, sign: int, quotient: int, to_add: int, dividend: int) -> (bool, int):
+        """
+        Checks whether adding 'to_add' to the quotient will cause
+        overflow. 
+        
+        Returns True and the max/min int if overflow will occur, else returns False, 0
+        """
+        if sign < 0:
+            if quotient > 0 - MIN_INT - to_add:
+                return True, MIN_INT
+        else:
+            if quotient > MAX_INT - to_add:
+                return True, MAX_INT
+        
+        return False, 0
