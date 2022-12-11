@@ -5,8 +5,8 @@ func strStr(haystack string, needle string) int {
                 return -1
             }
             
-            check := haystack[i:i+len(needle)]
-            if check == needle {
+            candidate := haystack[i:i+len(needle)]
+            if candidate == needle {
                 return i
             }
         }
