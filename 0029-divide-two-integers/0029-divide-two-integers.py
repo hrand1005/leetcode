@@ -1,5 +1,5 @@
-MAX_INT = 2**31 - 1
-MIN_INT = 2**31 * -1
+MAX_INT = 2147483647
+MIN_INT = -2147483648
 
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
