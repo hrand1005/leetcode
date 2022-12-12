@@ -1,6 +1,7 @@
 MAX_INT = 2147483647
 MIN_INT = -2147483648
 
+"""
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
         if dividend == 0:
@@ -35,7 +36,42 @@ class Solution:
             quotient = 0 - quotient
         
         return quotient
-    
+"""    
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        if dividend == 0:
+            return 0
+        
+        sign = 1
+        if dividend < 0:
+            dividend = 0 - dividend
+            sign = 0 - sign
+            
+        if divisor < 0:
+            divisor = 0 - divisor
+            sign = 0 - sign
+        
+        quotient = 0
+        counter = divisor
+        while counter <= dividend:
+            scale = 1
+            while (counter << 1) <= dividend:
+                scale <<= 1
+                counter <<= 1
+                
+            overflow, res = self.check_overflow(sign, quotient, scale, dividend)
+            if overflow:
+                return res
+        
+            dividend -= counter
+            quotient += scale
+            counter = divisor
+        
+        if sign < 0:
+            quotient = 0 - quotient
+        
+        return quotient
+
     
     def check_overflow(self, sign: int, quotient: int, to_add: int, dividend: int) -> (bool, int):
         """
