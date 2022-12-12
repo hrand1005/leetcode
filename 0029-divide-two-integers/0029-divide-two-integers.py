@@ -4,9 +4,6 @@ MIN_INT = -2147483648
 """
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        if dividend == 0:
-            return 0
-        
         sign = 1
         if dividend < 0:
             dividend = 0 - dividend
@@ -39,9 +36,6 @@ class Solution:
 """    
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        # if dividend == 0:
-        #    return 0
-        
         sign = 1
         if dividend < 0:
             dividend = 0 - dividend
