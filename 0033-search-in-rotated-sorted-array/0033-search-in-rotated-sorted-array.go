@@ -1,8 +1,6 @@
+
 func recursiveSearch(nums []int, target, left, right int) int {
-    if left >= right {
-        if nums[left] == target {
-            return left
-        }
+    if left > right {
         return -1
     }
     
