@@ -22,8 +22,7 @@ func validRow(board [][]byte, index int) bool {
     seen := map[byte]bool{}
     row := board[index]
     
-    for _, v := range row {
-        n := v
+    for _, n := range row {
         if _, ok := seen[n]; ok && n != blank {
             return false
         }
