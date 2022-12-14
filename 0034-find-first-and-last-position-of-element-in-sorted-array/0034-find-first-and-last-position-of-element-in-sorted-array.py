@@ -1,3 +1,4 @@
+"""
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         low_index, high_index = -1, -1
@@ -28,4 +29,42 @@ class Solution:
             high += 1
         
         return low, high
+"""
+
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        return [self.find_left(nums, target), self.find_right(nums, target)]
+    
+    def find_left(self, nums: List[int], target: int) -> int:
+        left_index = -1
         
+        low, high = 0, len(nums) - 1
+        while low <= high:
+            midpoint = (low + high) // 2
+            
+            if nums[midpoint] == target:
+                left_index = midpoint
+                
+            if nums[midpoint] >= target:
+                high = midpoint - 1
+            else:
+                low = midpoint + 1 
+                
+        return left_index
+
+    def find_right(self, nums: List[int], target: int) -> int:
+        right_index = -1
+        
+        low, high = 0, len(nums) - 1
+        while low <= high:
+            midpoint = (low + high) // 2
+            
+            if nums[midpoint] == target:
+                right_index = midpoint
+                
+            if nums[midpoint] <= target:
+                low = midpoint + 1
+            else:
+                high = midpoint - 1
+                
+        return right_index
