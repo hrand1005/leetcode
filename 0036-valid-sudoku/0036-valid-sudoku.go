@@ -1,7 +1,6 @@
 const blank = byte(46)
 
 func isValidSudoku(board [][]byte) bool {
-    fmt.Println(board)
     for i := 0; i < 9; i++ {
         if !validRow(board, i) {
             return false
