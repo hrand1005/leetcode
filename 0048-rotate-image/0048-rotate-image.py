@@ -6,7 +6,7 @@ class Solution:
         rotated = set()
         
         for i in range(len(matrix)):
-            for j in range(i, len(matrix)-i):
+            for j in range(i, len(matrix) - i):
                 last = matrix[i][j]
                 new_i = j
                 new_j = len(matrix) - 1 - i
@@ -26,7 +26,3 @@ class Solution:
                         new_j = len(matrix) - 1 - temp
 
                         cur = matrix[new_i][new_j]
-                        
-                        
-        
-        
