@@ -16,7 +16,6 @@ class Solution:
                             perms[j].append(p + [n])
                     
         return perms[len(nums)]            
-"""            
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
@@ -32,4 +31,19 @@ class Solution:
                 new_remaining = remaining[:i] + remaining[i+1:]
                 stack.append((new_perms, new_remaining))
                 
+        return result
+"""            
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        if len(nums) == 1:
+            return [[nums[0]]]
+        
+        result = []
+        for i in range(len(nums)):
+            this = nums[:i] + nums[i+1:]
+            perms = self.permute(this)
+            for p in perms:
+                result.append([nums[i]] + p)
+        
         return result
