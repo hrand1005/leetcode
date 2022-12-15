@@ -1,3 +1,4 @@
+/*
 type permTuple struct {
     perm []int
     remaining []int
@@ -36,6 +37,32 @@ func permute(nums []int) [][]int {
             }
             
             stack = append(stack, newPermTuple)
+        }
+    }
+    
+    return allPerms
+}
+*/
+
+func permute(nums []int) [][]int {
+    if len(nums) == 1 {
+        return [][]int{
+            { nums[0] },
+        }
+    }
+    
+    allPerms := [][]int{}
+    for i := 0; i < len(nums); i++ {
+        this := []int{ nums[i] }
+        
+        subset := []int{}
+        subset = append(subset, nums[:i]...)
+        subset = append(subset, nums[i+1:]...)
+        
+        subPerms := permute(subset)
+        for _, v := range subPerms {
+            newPerms := append(this, v...)
+            allPerms = append(allPerms, newPerms)
         }
     }
     
