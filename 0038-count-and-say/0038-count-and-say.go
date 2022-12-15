@@ -1,8 +1,8 @@
-/*
 import (
     "strings"
 )
 
+/*
 func countAndSay(n int) string {
     say := map[int]string{
         1: "1",
@@ -29,7 +29,6 @@ func countAndSay(n int) string {
     
     return say[n]
 }
-*/
 
 func countAndSay(n int) string {
     say := map[int]string{
@@ -56,4 +55,32 @@ func countAndSay(n int) string {
     }
     
     return say[n]
+}
+*/
+
+func countAndSay(n int) string {
+    return countAndSayRecursive(n-1, "1")
+}
+
+func countAndSayRecursive(n int, say string) string {
+    if n == 0 {
+        return say
+    }
+    
+    count := 1
+    current := string(say[0])
+    newSay := &strings.Builder{}
+    
+    for i := 1; i < len(say); i++ {
+        if say[i] == say[i-1] {
+            count++
+        } else {
+            newSay.WriteString(fmt.Sprintf("%v%v", count, current))
+            current = string(say[i])
+            count = 1
+        }
+    }
+    newSay.WriteString(fmt.Sprintf("%v%v", count, current))
+    
+    return countAndSayRecursive(n-1, newSay.String())
 }
