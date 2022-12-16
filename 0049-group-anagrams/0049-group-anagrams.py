@@ -9,8 +9,9 @@ class Solution:
             listStr.sort()
             sortedStr = ''.join(listStr)
             
-            if anagram.get(sortedStr) != None:
-                result[anagram.get(sortedStr)].append(this)
+            group = anagram.get(sortedStr)
+            if group != None:
+                result[group].append(this)
             else:
                 result.append([this])
                 anagram[sortedStr] = len(result) - 1
