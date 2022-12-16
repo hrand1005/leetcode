@@ -21,7 +21,7 @@ func rotate(matrix [][]int)  {
     
     for i := 0; i < quartileHeight; i++ {
         for j := 0; j < quartileWidth; j++ {
-            matrix[i][j], matrix[j][end-i], matrix[end-i][end-j], matrix[end-j][i] = 
+            matrix[i][j], matrix[j][end-i], matrix[end-i][end-j], matrix[end-j][i] =
             matrix[end-j][i], matrix[i][j], matrix[j][end-i], matrix[end-i][end-j]
         }
     }
