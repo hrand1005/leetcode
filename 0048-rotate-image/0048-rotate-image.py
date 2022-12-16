@@ -28,11 +28,12 @@ class Solution:
 
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
-        length = len(matrix)
-        n = length - 1
+        quadrant_height = len(matrix) // 2
+        quadrant_width = len(matrix) - (len(matrix) // 2)
+        n = len(matrix) - 1
         
-        for i in range(length // 2):
-            for j in range(length - length // 2):
+        for i in range(quadrant_height):
+            for j in range(quadrant_width):
                 matrix[i][j], matrix[j][n-i], matrix[n-i][n-j], matrix[n-j][i] = \
                 matrix[n-j][i], matrix[i][j], matrix[j][n-i], matrix[n-i][n-j] 
         
