@@ -37,10 +37,9 @@ func rotate(matrix [][]int)  {
 */
 
 func rotate(matrix [][]int)  {
-    quartileHeight := len(matrix) / 2
     end := len(matrix) - 1
     
-    for i := 0; i < quartileHeight; i++ {
+    for i := 0; i < len(matrix)/2; i++ {
         for j := i; j < end - i; j++ {
             matrix[i][j], matrix[j][end-i], matrix[end-i][end-j], matrix[end-j][i] =
             matrix[end-j][i], matrix[i][j], matrix[j][end-i], matrix[end-i][end-j]
