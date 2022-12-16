@@ -5,9 +5,7 @@ class Solution:
         
         for i in range(len(strs)):
             this = strs[i]
-            listStr = list(this)
-            listStr.sort()
-            sortedStr = ''.join(listStr)
+            sortedStr = ''.join(sorted(this))
             
             group = anagram.get(sortedStr)
             if group != None:
@@ -17,4 +15,3 @@ class Solution:
                 anagram[sortedStr] = len(result) - 1
             
         return result    
-        
