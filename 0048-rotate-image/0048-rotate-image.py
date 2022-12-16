@@ -1,8 +1,6 @@
+"""                        
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
         rotated = set()
         
         for i in range(len(matrix)):
@@ -26,3 +24,16 @@ class Solution:
                         new_j = len(matrix) - 1 - temp
 
                         cur = matrix[new_i][new_j]
+"""
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        length = len(matrix)
+        n = length - 1
+        
+        for i in range(length // 2):
+            for j in range(length - length // 2):
+                matrix[i][j], matrix[j][n-i], matrix[n-i][n-j], matrix[n-j][i] = \
+                matrix[n-j][i], matrix[i][j], matrix[j][n-i], matrix[n-i][n-j] 
+        
+                
