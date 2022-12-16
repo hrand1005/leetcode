@@ -1,3 +1,29 @@
+func rotate(matrix [][]int)  {
+    // rotated := map[string]bool{}
+    
+    for i := 0; i < len(matrix) / 2; i++ {
+        for j := i; j < len(matrix) - 1 - i; j++ {
+            toMove := matrix[i][j]
+            new_i := j
+            new_j := len(matrix) - 1 - i
+            current := matrix[new_i][new_j]
+            
+            for k := 0; k < 4; k++ {
+                matrix[new_i][new_j] = toMove
+                fmt.Printf("i: %v, j: %v", i, j)
+                fmt.Println(matrix)
+                toMove = current
+                
+                temp := new_i
+                new_i = new_j
+                new_j = len(matrix) - 1 - temp
+                
+                current = matrix[new_i][new_j]
+            }
+        }
+    }
+}
+
 /*
 func rotate(matrix [][]int)  {
     end := len(matrix) - 1
@@ -12,7 +38,6 @@ func rotate(matrix [][]int)  {
         }
     }
 }
-*/
 
 func rotate(matrix [][]int)  {
     quartileHeight := len(matrix) / 2
@@ -26,3 +51,4 @@ func rotate(matrix [][]int)  {
         }
     }
 }
+*/
