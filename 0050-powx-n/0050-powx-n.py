@@ -3,10 +3,10 @@ class Solution:
         if x == 0: 
             return 0
         
-        negative_exponent = False
+        neg_exp = False
         if n < 0:
             n = -n
-            negative_exponent = True
+            neg_exp = True
         
         res = 1
         while n > 0:
@@ -19,7 +19,7 @@ class Solution:
             n -= scale
             res *= new_x
                 
-        if negative_exponent:
+        if neg_exp:
             return 1 / res
         
         return res
