@@ -24,7 +24,6 @@ class Solution:
                         new_j = len(matrix) - 1 - temp
 
                         cur = matrix[new_i][new_j]
-"""
 
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
@@ -37,4 +36,14 @@ class Solution:
                 matrix[i][j], matrix[j][n-i], matrix[n-i][n-j], matrix[n-j][i] = \
                 matrix[n-j][i], matrix[i][j], matrix[j][n-i], matrix[n-i][n-j] 
         
+                
+"""
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        matrix.reverse()
+        
+        for i in range(len(matrix)):
+            for j in range(i, len(matrix)):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
                 
