@@ -1,6 +1,4 @@
 func rotate(matrix [][]int)  {
-    // rotated := map[string]bool{}
-    
     for i := 0; i < len(matrix) / 2; i++ {
         for j := i; j < len(matrix) - 1 - i; j++ {
             toMove := matrix[i][j]
@@ -10,8 +8,6 @@ func rotate(matrix [][]int)  {
             
             for k := 0; k < 4; k++ {
                 matrix[new_i][new_j] = toMove
-                fmt.Printf("i: %v, j: %v", i, j)
-                fmt.Println(matrix)
                 toMove = current
                 
                 temp := new_i
