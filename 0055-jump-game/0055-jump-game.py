@@ -33,9 +33,6 @@ class Solution:
             if max_reach < i:
                 return False
             
-            if nums[i] == 0:
-                continue
-            
             max_reach = max(max_reach, i + nums[i])
             if max_reach >= target:
                 return True
