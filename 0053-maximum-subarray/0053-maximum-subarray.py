@@ -14,7 +14,6 @@ class Solution:
                     max_sum = count
         
         return max_sum
-"""
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -25,3 +24,13 @@ class Solution:
             sums[i] = max(sums[i-1] + nums[i], nums[i])
         
         return max(sums)
+"""
+    
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_sum, cur_sum = nums[0], nums[0]
+        for n in nums[1:]:
+            cur_sum = max(cur_sum + n, n)
+            max_sum = max(max_sum, cur_sum)
+        
+        return max_sum
