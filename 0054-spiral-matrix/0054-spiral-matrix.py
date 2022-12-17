@@ -5,10 +5,10 @@ class Solution:
         if len(matrix) == 1:
             return matrix[0]
         
-        outer, inner = self.get_outer_inner(matrix) 
-        return outer + self.spiralOrder(inner)
+        result, inner_matrix = self.pop_border(matrix) 
+        return result + self.spiralOrder(inner_matrix)
         
-    def get_outer_inner(self, matrix: List[List[int]]) -> (List, List[List[int]]):
+    def pop_border(self, matrix: List[List[int]]) -> (List, List[List[int]]):
         outer = matrix.pop(0)
         
         if len(matrix[0]) == 0:
