@@ -37,6 +37,6 @@ class Solution:
             if max_reach >= target:
                 return True
         
-        return max_reach >= target
+        return True
              
             
