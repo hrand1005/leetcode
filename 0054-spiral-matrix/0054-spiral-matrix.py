@@ -12,7 +12,7 @@ class Solution:
         outer = matrix.pop(0)
         
         if len(matrix[0]) == 0:
-            return outer, matrix
+            return outer, [[]]
         
         for i in range(0, len(matrix)-1):
             right_elem = matrix[i].pop(len(matrix[i])-1)
