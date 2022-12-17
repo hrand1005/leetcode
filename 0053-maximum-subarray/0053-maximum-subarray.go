@@ -1,17 +1,5 @@
 /*
 func maxSubArray(nums []int) int {
-    maxSum, curSum := nums[0], nums[0]
-    
-    for _, n := range nums[1:] {
-        curSum = max(curSum + n, n) 
-        maxSum = max(maxSum, curSum)
-    }
-    
-    return maxSum
-}
-*/
-
-func maxSubArray(nums []int) int {
     sumTable := make([]int, len(nums))
     sumTable[0] = nums[0]
     
@@ -26,7 +14,18 @@ func maxSubArray(nums []int) int {
     
     return maxSum
 }
+*/
 
+func maxSubArray(nums []int) int {
+    maxSum, curSum := nums[0], nums[0]
+    
+    for _, n := range nums[1:] {
+        curSum = max(curSum + n, n) 
+        maxSum = max(maxSum, curSum)
+    }
+    
+    return maxSum
+}
 
 func max(a, b int) int {
     if a > b {
