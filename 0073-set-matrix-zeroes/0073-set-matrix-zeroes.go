@@ -44,7 +44,7 @@ func setZeroes(matrix [][]int)  {
     
     for i := 1; i < len(matrix); i++ {
         if matrix[i][0] == 0 {
-            for j := range matrix[i] {
+            for j := 0; j < len(matrix[i]); j++ {
                 matrix[i][j] = 0
             }
         }
