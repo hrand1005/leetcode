@@ -29,8 +29,7 @@ class Solution:
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort(key= lambda x : x[0])
-        low, high = intervals.pop(0)
-        result = [[low, high]]
+        result = [intervals.pop(0)]
         
         for i in range(0, len(intervals)):
             if intervals[i][0] <= result[-1][1]:
