@@ -1,3 +1,4 @@
+"""
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         result = []
@@ -23,3 +24,19 @@ class Solution:
                 result.append([low, high])
             
         return result
+"""
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key= lambda x : x[0])
+        low, high = intervals.pop(0)
+        result = [[low, high]]
+        
+        for i in range(0, len(intervals)):
+            if intervals[i][0] <= result[-1][1]:
+                result[-1][1] = max(intervals[i][1], result[-1][1]) 
+            else:
+                result.append(intervals[i])
+        
+        return result
+                
