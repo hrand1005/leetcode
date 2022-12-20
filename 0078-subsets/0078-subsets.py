@@ -16,7 +16,6 @@ class Solution:
             all_subsets.extend(sub)
         
         return all_subsets
-"""
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
@@ -29,5 +28,19 @@ class Solution:
         for i in range(len(nums)):
             self.dfs(nums[i+1:], current+[nums[i]], all_subsets)
         
+"""
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        all_subsets = [[]]
+        for n in nums:
+            all_subsets += [s + [n] for s in all_subsets]
         
-            
+        return all_subsets
+    """
+    def subsets(self, nums):
+        res = [[]]
+        for num in sorted(nums):
+            res += [item+[num] for item in res]
+        return res
+    """
