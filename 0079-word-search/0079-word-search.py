@@ -107,14 +107,12 @@ class Solution:
         i, j = coord[0], coord[1]
         if len(board)-1 < i or i < 0:
             return False
-        
         if len(board[i])-1 < j or j < 0:
+            return False
+        if board[i][j] != word[0]:
             return False
         
         letter = board[i][j]
-        if letter != word[0]:
-            return False
-        
         board[i][j] = ""
         
         if self.dfs((i-1, j), board, word[1:]) or \
