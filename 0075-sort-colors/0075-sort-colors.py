@@ -4,7 +4,6 @@ class Solution:
         right = len(nums) - 1
         i = 0
         while i <= right:
-            print(f'i: {i}, nums: {nums}')
             if nums[i] == 0:
                 nums[i], nums[left] = nums[left], nums[i]
                 left += 1
