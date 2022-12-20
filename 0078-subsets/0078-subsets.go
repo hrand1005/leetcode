@@ -20,7 +20,6 @@ func recursiveSubsets(nums []int) [][]int {
     
     return allSubsets
 }
-*/
 
 func subsets(nums []int) [][]int {
     return dfs(nums, []int{})
@@ -35,4 +34,19 @@ func dfs(nums, cur []int) [][]int {
         subs = append(subs, dfs(nums[i+1:], newCur)...)
     }
     return subs
+}
+*/
+
+func subsets(nums []int) [][]int {
+    all := [][]int{{}}
+    for _, n := range nums {
+        for _, s := range all {
+            sCopy := make([]int, len(s))
+            copy(sCopy, s)
+            sub := append(sCopy, n)
+            all = append(all, sub)
+        }
+    }
+    
+    return all
 }
