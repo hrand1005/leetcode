@@ -26,7 +26,6 @@ class Solution:
     
     def dfs(self, nums: List[int], current: List[int], all_subsets: List[List[int]]):
         all_subsets.append(current)
-        
         for i in range(len(nums)):
             self.dfs(nums[i+1:], current+[nums[i]], all_subsets)
         
