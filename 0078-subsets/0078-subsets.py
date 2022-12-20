@@ -8,12 +8,12 @@ class Solution:
         
         all_subsets = []
         for i in range(len(nums)):
-            with_i = self.subsets_recursive(nums[i+1:])
-            for elem in with_i:
-                elem.insert(0, nums[i])
+            sub = self.subsets_recursive(nums[i+1:])
+            for elem in sub:
+                elem.append(nums[i])
                 
-            with_i.insert(0, [nums[i]])    
-            all_subsets.extend(with_i)
+            sub.append([nums[i]])    
+            all_subsets.extend(sub)
         
         return all_subsets
         
