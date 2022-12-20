@@ -48,8 +48,10 @@ func dfs(board [][]byte, word string, i, j int) bool {
     
     board[i][j] = 0
     
-    if dfs(board, word[1:], i-1, j) || dfs(board, word[1:], i+1, j) ||
-    dfs(board, word[1:], i, j-1) || dfs(board, word[1:], i, j+1) {
+    if dfs(board, word[1:], i-1, j) || 
+       dfs(board, word[1:], i+1, j) ||
+       dfs(board, word[1:], i, j-1) ||
+       dfs(board, word[1:], i, j+1) {
         return true
     }
     
