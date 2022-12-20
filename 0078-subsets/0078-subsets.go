@@ -1,6 +1,5 @@
 func subsets(nums []int) [][]int {
-    emptySet := []int{}
-    return append([][]int{emptySet}, recursiveSubsets(nums)...)
+    return append([][]int{{}}, recursiveSubsets(nums)...)
 }
 
 func recursiveSubsets(nums []int) [][]int {
