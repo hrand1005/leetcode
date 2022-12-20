@@ -112,7 +112,6 @@ class Solution:
         if board[i][j] != word[0]:
             return False
         
-        letter = board[i][j]
         board[i][j] = ""
         
         if self.dfs((i-1, j), board, word[1:]) or \
@@ -121,6 +120,6 @@ class Solution:
            self.dfs((i, j+1), board, word[1:]):
             return True
         
-        board[i][j] = letter
+        board[i][j] = word[0]
         
         return False
