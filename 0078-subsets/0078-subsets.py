@@ -1,3 +1,4 @@
+"""
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         return [[]] + self.subsets_recursive(nums)
@@ -15,4 +16,19 @@ class Solution:
             all_subsets.extend(sub)
         
         return all_subsets
+"""
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        all_subsets = []
+        self.dfs(nums, [], all_subsets)
+        return all_subsets
+    
+    def dfs(self, nums: List[int], current: List[int], all_subsets: List[List[int]]):
+        all_subsets.append(current)
         
+        for i in range(len(nums)):
+            self.dfs(nums[i+1:], current+[nums[i]], all_subsets)
+        
+        
+            
