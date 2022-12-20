@@ -11,7 +11,6 @@ class Solution:
             sub = self.subsets_recursive(nums[i+1:])
             for elem in sub:
                 elem.append(nums[i])
-                
             sub.append([nums[i]])    
             all_subsets.extend(sub)
         
