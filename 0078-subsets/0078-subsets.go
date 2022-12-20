@@ -34,6 +34,5 @@ func dfs(nums, cur []int) [][]int {
         newCur := append(cur, nums[i])
         subs = append(subs, dfs(nums[i+1:], newCur)...)
     }
-    
     return subs
 }
