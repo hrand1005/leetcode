@@ -37,10 +37,3 @@ class Solution:
             all_subsets += [s + [n] for s in all_subsets]
         
         return all_subsets
-    """
-    def subsets(self, nums):
-        res = [[]]
-        for num in sorted(nums):
-            res += [item+[num] for item in res]
-        return res
-    """
