@@ -6,6 +6,8 @@
  *     Right *TreeNode
  * }
  */
+
+/*
 func isValidBST(root *TreeNode) bool {
     return isValidBSTRecursive(root, nil, nil)
 }
@@ -27,4 +29,30 @@ func isValidBSTRecursive(root *TreeNode, min, max *int) bool {
     rightValid := isValidBSTRecursive(root.Right, &root.Val, max)
     
     return leftValid && rightValid
+}
+*/
+
+func isValidBST(root *TreeNode) bool {
+    visitedOrder := inorderTraversal(root)
+    
+    fmt.Println(visitedOrder)
+    for i := 1; i < len(visitedOrder); i++ {
+        if visitedOrder[i] <= visitedOrder[i-1] {
+            return false
+        }
+    }
+    
+    return true
+}
+
+func inorderTraversal(root *TreeNode) []int {
+    if root == nil {
+        return []int{}
+    }
+    
+    leftVisited := inorderTraversal(root.Left)
+    visited := append(leftVisited, root.Val)
+    rightVisited := inorderTraversal(root.Right)
+    
+    return append(visited, rightVisited...)
 }
