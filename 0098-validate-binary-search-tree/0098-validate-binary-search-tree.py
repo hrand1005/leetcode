@@ -12,11 +12,9 @@ class Solution:
         if root == None:
             return True
         
-        if min_val != None:
-            if root.val <= min_val:
+        if min_val != None and root.val <= min_val:
                 return False
-        if max_val != None:
-            if max_val <= root.val:
+        if max_val != None and max_val <= root.val:
                 return False
         
         left_valid =  self.isValidBSTRecursive(root.left, min_val, root.val)
