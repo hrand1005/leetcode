@@ -94,6 +94,5 @@ class Solution:
             if LETTER_TO_NUMBER.get(s[i-2:i]) != None:
                 all_ways[i] += all_ways[i-2]
         
-        print(all_ways)
         return all_ways[-1]
         
