@@ -41,5 +41,3 @@ class Solution:
         self.visit_inorder(root.left, visited)
         visited.append(root.val)
         self.visit_inorder(root.right, visited)
-        
-        return
