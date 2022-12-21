@@ -35,7 +35,6 @@ func isValidBSTRecursive(root *TreeNode, min, max *int) bool {
 func isValidBST(root *TreeNode) bool {
     visitedOrder := inorderTraversal(root)
     
-    fmt.Println(visitedOrder)
     for i := 1; i < len(visitedOrder); i++ {
         if visitedOrder[i] <= visitedOrder[i-1] {
             return false
