@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+"""
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         return self.isValidBSTRecursive(root, None, None)
@@ -21,5 +22,24 @@ class Solution:
         right_valid = self.isValidBSTRecursive(root.right, root.val, max_val)
         
         return left_valid and right_valid
+"""
+# Inorder traversal
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        inorder_values = []
+        self.visit_inorder(root, inorder_values)
         
+        for i in range(1, len(inorder_values)):
+            if inorder_values[i] <= inorder_values[i-1]:
+                return False
+        return True
+    
+    def visit_inorder(self, root: Optional[TreeNode], visited: List[int]):
+        if root == None:
+            return
         
+        self.visit_inorder(root.left, visited)
+        visited.append(root.val)
+        self.visit_inorder(root.right, visited)
+        
+        return
