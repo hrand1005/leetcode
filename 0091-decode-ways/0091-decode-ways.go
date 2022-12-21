@@ -1,5 +1,5 @@
 func numDecodings(s string) int {
-    if len(s) == 0 || rune(s[0]) == '0' {
+    if len(s) == 0 || s[0] == '0' {
         return 0
     } 
     if len(s) == 1 {
@@ -9,7 +9,7 @@ func numDecodings(s string) int {
     allWays := make([]int, len(s)+1)
     allWays[0] = 1
     
-    if rune(s[1]) != '0' {
+    if s[1] != '0' {
         allWays[1] = 1
     }
     
