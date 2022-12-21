@@ -19,6 +19,9 @@ class Solution:
             if max_val <= root.val:
                 return False
         
-        return self.isValidBSTRecursive(root.left, min_val, root.val) and self.isValidBSTRecursive(root.right, root.val, max_val)
+        left_valid =  self.isValidBSTRecursive(root.left, min_val, root.val)
+        right_valid = self.isValidBSTRecursive(root.right, root.val, max_val)
+        
+        return left_valid and right_valid
         
         
