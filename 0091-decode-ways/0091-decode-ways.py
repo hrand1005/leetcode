@@ -1,3 +1,4 @@
+"""
 LETTER_TO_NUMBER = {
      "1":"A",
      "2":"B",
@@ -26,7 +27,6 @@ LETTER_TO_NUMBER = {
      "25":"Y",
      "26":"Z",
 }
-"""
 class Solution:
     def numDecodings(self, s: str) -> int:
         letter_to_number = {
@@ -72,7 +72,6 @@ class Solution:
                 stack.append(word[2:])
             
         return ways
-"""
 
 class Solution:
     def numDecodings(self, s: str) -> int:
@@ -96,3 +95,24 @@ class Solution:
         
         return all_ways[-1]
         
+"""
+        
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        if s[0] == "0":
+            return 0
+        if len(s) == 1:
+            return 1
+        
+        all_ways = [0] * (len(s) + 1)
+        all_ways[0] = 1
+        if int(s[1]) != 0:
+            all_ways[1] = 1
+        
+        for i in range(2, len(s)+1):
+            if int(s[i-1]) != 0:
+                all_ways[i] += all_ways[i-1]
+            if 10 <= int(s[i-2:i]) <= 26:
+                all_ways[i] += all_ways[i-2]
+                
+        return all_ways[-1]       
