@@ -14,8 +14,7 @@ func numDecodings(s string) int {
     }
     
     for i := 2; i < len(s) + 1; i++ {
-        single, _ := strconv.Atoi(string(s[i-1]))
-        if single != 0 {
+        if s[i-1] != '0' {
             allWays[i] += allWays[i-1]
         }
         
