@@ -6,6 +6,7 @@
  *     Right *TreeNode
  * }
  */
+
 type TreeNodeWithLevel struct {
     *TreeNode
     Level int
@@ -25,24 +26,24 @@ func levelOrder(root *TreeNode) [][]int {
         node := queue[0]
         queue = queue[1:]
         
+        if node.TreeNode == nil {
+            continue
+        }
+        
         if len(values) < node.Level+1 {
             values = append(values, []int{node.Val})
         } else {
             values[node.Level] = append(values[node.Level], node.Val)
         }
         
-        if node.Left != nil {
-            queue = append(queue, &TreeNodeWithLevel{
-                node.Left,
-                node.Level + 1,
-            })
-        }
-        if node.Right != nil {
-            queue = append(queue, &TreeNodeWithLevel{
-                node.Right,
-                node.Level + 1,
-            })
-        }
+        queue = append(queue, &TreeNodeWithLevel{
+            node.Left,
+            node.Level + 1,
+        })
+        queue = append(queue, &TreeNodeWithLevel{
+            node.Right,
+            node.Level + 1,
+        })
     }
     
     return values
