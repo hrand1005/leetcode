@@ -56,22 +56,22 @@ class Solution:
         queue = self.get_border_entries(board)
         visited = set()
         
+        # use bfs to visit all reachable 'O's
         while queue:
             i, j = queue.pop(0)
             visited.add((i, j))
-            
             neighbors = [
                 (i+1, j),
                 (i-1, j),
                 (i, j+1),
                 (i, j-1),
             ]
-            
             for n in neighbors:
                 if 0 <= n[0] <= len(board)-1 and 0 <= n[1] <= len(board[0])-1:
                     if board[n[0]][n[1]] == 'O' and n not in visited:
                         queue.append(n)
         
+        # flip all 'O's not reachable from the border
         for i in range(len(board)):
             for j in range(len(board[i])):
                 if board[i][j] == 'O' and (i, j) not in visited:
