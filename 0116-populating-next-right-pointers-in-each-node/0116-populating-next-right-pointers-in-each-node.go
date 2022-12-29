@@ -7,6 +7,7 @@
  *     Next *Node
  * }
  */
+/*
 type NodeWithLevel struct {
     *Node
     Level int
@@ -37,6 +38,21 @@ func connect(root *Node) *Node {
             node.Right,
             node.Level + 1,
         })
+    }
+    
+    return root
+}
+*/
+func connect(root *Node) *Node {
+    if root != nil && root.Left != nil {
+        root.Left.Next = root.Right
+        
+        if root.Next != nil {
+            root.Right.Next = root.Next.Left
+        }
+        
+        connect(root.Left)
+        connect(root.Right)
     }
     
     return root
