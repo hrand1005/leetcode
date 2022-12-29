@@ -1,16 +1,16 @@
 func longestConsecutive(nums []int) int {
     numSet := toSet(nums)
-    longestSeq := 0
+    longest := 0
     for n := range numSet {
         if exists := numSet[n-1]; !exists {
-            thisSeq := 1
-            for i := n+1; numSet[i]; i++ {
-                thisSeq++
+            seq := 1
+            for numSet[n+seq] {
+                seq++
             }
-            longestSeq = max(longestSeq, thisSeq)
+            longest = max(longest, seq)
         }
     }
-    return longestSeq
+    return longest
 }
 
 func toSet(s []int) map[int]bool {
