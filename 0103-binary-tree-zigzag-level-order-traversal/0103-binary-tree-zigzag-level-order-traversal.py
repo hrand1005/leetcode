@@ -12,22 +12,21 @@ class Solution:
         
         while queue:
             level_nodes = queue.pop(0)
-            
-            new_level = []
-            this_zig = []
+            new_level, this_zig = [], []
             for n in level_nodes:
                 if n == None:
                     continue
+                    
+                this_zig.append(n.val)
                 if level % 2 == 0:    
                     new_level = [n.right, n.left] + new_level
                 else:
                     new_level = [n.left, n.right] + new_level
-                this_zig.append(n.val)
             
             if len(new_level) > 0:
+                zigzag.append(this_zig)
                 queue.append(new_level)
                 level += 1
-                zigzag.append(this_zig)
         
         return zigzag
         
