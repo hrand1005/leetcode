@@ -9,9 +9,7 @@ class Solution:
         all_pals = []
         for i in range(len(s), 0, -1):
             candidate = s[:i]
-            print(candidate)
             if self.is_palindrome(candidate):
-                print("IS PALINDROME")
                 remainders = self.partition(s[i:])
                 for r in remainders:
                     all_pals.append([candidate]+r)
