@@ -19,6 +19,7 @@ class Solution:
     def is_palindrome(self, s: str) -> bool:
         if len(s) <= 1:
             return True
-        if s[0] == s[-1]:
-            return self.is_palindrome(s[1:-1])
-        return False
+        if s[0] != s[-1]:
+            return False
+        
+        return self.is_palindrome(s[1:-1])
