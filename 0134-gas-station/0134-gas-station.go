@@ -34,7 +34,6 @@ func sum(s []int) int {
     }
     return sum
 }
-*/
 
 func canCompleteCircuit(gas []int, cost []int) int {
     start, tank, total := 0, 0, 0
@@ -49,5 +48,29 @@ func canCompleteCircuit(gas []int, cost []int) int {
     if total < 0 {
         return -1
     }
+    return start
+}
+*/
+
+func canCompleteCircuit(gas []int, cost []int) int {
+    diff := make([]int, len(gas))
+    for i := 0; i < len(diff); i++ {
+        diff[i] = gas[i] - cost[i]
+    }
+    
+    start, maxSub, total := 0, 0, 0
+    for i := 0; i < len(diff); i++ {
+        total += diff[i]
+        maxSub += diff[i]
+        if diff[i] > maxSub {
+            start = i
+            maxSub = diff[i]
+        }
+    }
+    
+    if total < 0 {
+        return -1
+    }
+    
     return start
 }
