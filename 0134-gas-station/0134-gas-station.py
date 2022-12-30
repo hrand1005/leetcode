@@ -1,8 +1,5 @@
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        if sum(cost) > sum(gas):
-            return -1
-        
         last_diff = -1
         for i in range(len(gas)):
             if gas[i] >= cost[i] and last_diff < 0:
