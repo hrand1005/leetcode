@@ -13,9 +13,7 @@ class Solution:
             return None
         
         head_copy = Node(head.val)
-        cur_copy = head_copy
-        cur = head
-        
+        cur, cur_copy = head, head_copy
         orig_list, copy_list = [], []
         while cur:
             if cur.next != None:
@@ -23,7 +21,6 @@ class Solution:
             
             orig_list.append(cur)
             copy_list.append(cur_copy)
-            
             cur = cur.next
             cur_copy = cur_copy.next
         
