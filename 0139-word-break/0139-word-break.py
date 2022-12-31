@@ -1,18 +1,17 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        queue = [("", s)]
+        queue = [s]
         word_set = set(wordDict)
         seen = set()
         
         while queue:
-            cur, st = queue.pop(0)
-            if st in word_set or len(st) == 0:
+            word = queue.pop(0)
+            if word in word_set or len(word) == 0:
                 return True
             
-            seen.add(st)
-            for i in range(1, len(st)+1):
-                if st[:i] in word_set and st[i:] not in seen:
-                    word_set.add(cur+st[:i])
-                    queue.append((cur+st[:i], st[i:]))
+            for i in range(1, len(word)+1):
+                if word[:i] in word_set and word[i:] not in seen:
+                    queue.append(word[i:])
+                    seen.add(word[i:])
                     
         return False        
