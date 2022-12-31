@@ -1,3 +1,4 @@
+/*
 func wordBreak(s string, wordDict []string) bool {
     wordSet := toSet(wordDict)
     seen := make(map[string]bool)
@@ -22,10 +23,28 @@ func wordBreak(s string, wordDict []string) bool {
     return false
 }
 
+*/
 func toSet(s []string) map[string]bool {
     set := make(map[string]bool, len(s))
     for _, v := range s {
         set[v] = true
     }
     return set
+}
+
+func wordBreak(s string, wordDict []string) bool {
+    wordSet := toSet(wordDict)
+    table := make([]bool, len(s)+1)
+    table[0] = true
+    
+    for i := 1; i < len(s)+1; i++ {
+        for j := 0; j < i; j++ {
+            if table[j] && wordSet[s[j:i]] {
+                table[i] = true
+                break
+            }
+        }
+    }
+    
+    return table[len(table)-1]
 }
