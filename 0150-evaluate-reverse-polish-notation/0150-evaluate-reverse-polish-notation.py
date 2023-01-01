@@ -1,5 +1,5 @@
 OPERATORS = ["+", "-", "*", "/"]
-
+"""
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         for i in range(len(tokens)):
@@ -28,3 +28,23 @@ class Solution:
             return x * y
         if op == "/":
             return int(float(x)/y)
+"""
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for t in tokens:
+            if t in OPERATORS:
+                y, x = stack.pop(), stack.pop()
+                if t == "+":
+                    stack.append(x + y)
+                if t == "-":
+                    stack.append(x - y)
+                if t == "*":
+                    stack.append(x * y)
+                if t == "/":
+                    stack.append(int(x / y))
+            else:
+                stack.append(int(t))
+        
+        return stack[0]
