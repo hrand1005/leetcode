@@ -1,4 +1,4 @@
-OPERATORS = ["+", "-", "*", "/"]
+OPERATORS = "+-*/"
 
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
@@ -15,7 +15,7 @@ class Solution:
         
     def find_next_operator(self, tokens: List[str]) -> int:    
         for i in range(len(tokens)):
-            if tokens[i] in OPERATORS:
+            if str(tokens[i]) in OPERATORS:
                 return i
         return -1   
     
