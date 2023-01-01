@@ -26,6 +26,4 @@ class Solution:
         if op == "*":
             return x * y
         if op == "/":
-            if x // y < 0:
-                return -(abs(x)//abs(y))
-            return x // y
+            return int(float(x)/y)
