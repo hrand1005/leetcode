@@ -3,7 +3,6 @@ class Solution:
         while len(tokens) > 1:
             index = self.find_next_operator(tokens)
             result = self.simplify(tokens[index-2], tokens[index-1], tokens[index])
-            print(result)
             tokens = tokens[:index-2] + [result] + tokens[index+1:]
         return int(tokens[0])    
         
