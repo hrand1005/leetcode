@@ -71,6 +71,7 @@ class Solution:
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
+            
         right = slow.next
         slow.next = None
         return head, right
@@ -86,11 +87,6 @@ class Solution:
                 cur.next = right
                 right = right.next
             cur = cur.next
-        
+            
         cur.next = left or right
-        #if left != None:
-        #    cur.next = left
-        #elif right != None:
-        #    cur.next = right
-        
         return dummy.next
