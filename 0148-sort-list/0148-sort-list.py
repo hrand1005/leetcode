@@ -87,9 +87,10 @@ class Solution:
                 right = right.next
             cur = cur.next
         
-        if left != None:
-            cur.next = left
-        elif right != None:
-            cur.next = right
+        cur.next = left or right
+        #if left != None:
+        #    cur.next = left
+        #elif right != None:
+        #    cur.next = right
         
         return dummy.next
