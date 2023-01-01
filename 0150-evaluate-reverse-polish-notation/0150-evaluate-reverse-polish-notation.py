@@ -18,7 +18,7 @@ class Solution:
                 return i
         return -1   
     
-    def simplify(self, x: str, y: str, op: str) -> str:
+    def simplify(self, x: int, y: int, op: str) -> str:
         if op == "+":
             return x + y
         if op == "-":
@@ -26,22 +26,6 @@ class Solution:
         if op == "*":
             return x * y
         if op == "/":
-            if x // y >= 0:
-                return x // y
-            else:
+            if x // y < 0:
                 return -(abs(x)//abs(y))
-    """
-    def simplify(self, x: str, y: str, op: str) -> str:
-        x_int, y_int = int(x), int(y)
-        if op == "+":
-            return str(x_int + y_int)
-        if op == "-":
-            return str(x_int - y_int)
-        if op == "*":
-            return str(x_int * y_int)
-        if op == "/":
-            if x_int // y_int >= 0:
-                return str(x_int // y_int)
-            else:
-                return str(-(abs(x_int)//abs(y_int)))
-    """
+            return x // y
