@@ -3,6 +3,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+"""
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if head == None or head.next == None:
@@ -54,3 +55,41 @@ class Solution:
             cur.next = right
         
         return head
+"""
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head == None or head.next == None:
+            return head
+        
+        left_head, right_head = self.split(head)
+        left = self.sortList(left_head)
+        right = self.sortList(right_head)
+        return self.merge(left, right)
+    
+    def split(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        right = slow.next
+        slow.next = None
+        return head, right
+    
+    def merge(self, left: Optional[ListNode], right: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        cur = dummy
+        while left != None and right != None:
+            if left.val < right.val:
+                cur.next = left
+                left = left.next
+            else:
+                cur.next = right
+                right = right.next
+            cur = cur.next
+        
+        if left != None:
+            cur.next = left
+        elif right != None:
+            cur.next = right
+        
+        return dummy.next
