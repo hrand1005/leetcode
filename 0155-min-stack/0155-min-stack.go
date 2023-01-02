@@ -1,3 +1,4 @@
+/*
 type MinStack struct {
     // holds pairs of {min, val}
     stack [][]int
@@ -39,13 +40,58 @@ func min(a, b int) int {
     }
     return b
 }
+*/
+
+type node struct {
+    prev *node
+    val int
+    minVal int
+}
+
+type MinStack struct {
+    current *node
+}
 
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * obj := Constructor();
- * obj.Push(val);
- * obj.Pop();
- * param_3 := obj.Top();
- * param_4 := obj.GetMin();
- */
+func Constructor() MinStack {
+    return MinStack{}
+}
+
+
+func (this *MinStack) Push(val int)  {
+    if this.current == nil {
+        this.current = &node{
+            val: val,
+            minVal: val,
+        }
+    } else {
+        minVal := min(this.current.minVal, val)
+        this.current = &node{
+            val: val,
+            minVal: minVal,
+            prev: this.current,
+        }
+    }
+}
+
+
+func (this *MinStack) Pop()  {
+    this.current = this.current.prev
+}
+
+
+func (this *MinStack) Top() int {
+    return this.current.val
+}
+
+
+func (this *MinStack) GetMin() int {
+    return this.current.minVal
+}
+
+func min(a, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
