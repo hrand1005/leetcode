@@ -2,9 +2,6 @@ MIN_INT = -(1 << 31)
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        if self.product(nums) > 0:
-            return self.product(nums)
-        
         last_zero = -1
         candidates = []
         for i in range(len(nums)):
