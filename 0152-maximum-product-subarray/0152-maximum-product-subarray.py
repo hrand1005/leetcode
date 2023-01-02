@@ -1,3 +1,4 @@
+"""
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         candidates = self.find_candidates(nums)
@@ -36,3 +37,19 @@ class Solution:
         for n in nums:
             product *= n
         return product    
+"""
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        local_min = nums[0]
+        local_max = nums[0]
+        max_product = nums[0]
+        
+        for i in range(1, len(nums)):
+            prev_local_max = local_max
+            prev_local_min = local_min
+            local_max = max(max(prev_local_max*nums[i], nums[i]), prev_local_min*nums[i])
+            local_min = min(min(prev_local_max*nums[i], nums[i]), prev_local_min*nums[i])
+            max_product = max(max_product, local_max)
+        
+        return max_product
