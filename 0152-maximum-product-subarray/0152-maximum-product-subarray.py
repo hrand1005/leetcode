@@ -1,9 +1,7 @@
-MIN_INT = -(1 << 31)
-
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         candidates = self.find_candidates(nums)
-        max_product = MIN_INT
+        max_product = nums[0]
         if len(candidates) > 1:
             max_product = 0
         
@@ -33,7 +31,7 @@ class Solution:
     # returns min int32 val if nums is empty
     def product(self, nums: List[int]) -> int:
         if len(nums) == 0:
-            return MIN_INT
+            return -(1 << 31)
         product = 1
         for n in nums:
             product *= n
