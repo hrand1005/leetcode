@@ -40,22 +40,6 @@ class Solution:
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        local_min = nums[0]
-        local_max = nums[0]
-        max_product = nums[0]
-        
-        for i in range(1, len(nums)):
-            prev_local_max = local_max
-            prev_local_min = local_min
-            local_max = max(max(prev_local_max*nums[i], nums[i]), prev_local_min*nums[i])
-            local_min = min(min(prev_local_max*nums[i], nums[i]), prev_local_min*nums[i])
-            max_product = max(max_product, local_max)
-        
-        return max_product
-"""
-
-class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
         max_product = nums[0]
         cur_product = 1
         for i in range(len(nums)):
@@ -70,5 +54,21 @@ class Solution:
             max_product = max(max_product, cur_product)
             if cur_product == 0:
                 cur_product = 1
+        
+        return max_product
+"""
+        
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        local_min = nums[0]
+        local_max = nums[0]
+        max_product = nums[0]
+        
+        for i in range(1, len(nums)):
+            prev_local_max = local_max
+            prev_local_min = local_min
+            local_max = max(prev_local_max*nums[i], nums[i], prev_local_min*nums[i])
+            local_min = min(prev_local_max*nums[i], nums[i], prev_local_min*nums[i])
+            max_product = max(max_product, local_max)
         
         return max_product
