@@ -3,17 +3,15 @@ class Solution:
         sign = ""
         if numerator < 0 < denominator or denominator < 0 < numerator:
             sign += "-"
-        
         numerator, denominator = abs(numerator), abs(denominator)
+        
         whole = numerator // denominator
         rem = numerator % denominator
         if rem == 0:
             return sign + str(whole)
         
         dec = ""
-        seen = {
-            rem: 0
-        }
+        seen = {rem: 0}
         n = rem * 10
         while rem != 0:
             dec += str(n // denominator)
