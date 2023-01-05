@@ -1,3 +1,8 @@
+import (
+    "fmt"
+    "strconv"
+)
+
 func fractionToDecimal(numerator int, denominator int) string {
     result := quotientSign(numerator, denominator)
     numerator, denominator = abs(numerator), abs(denominator)
