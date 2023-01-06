@@ -19,7 +19,6 @@ class Solution:
         self.cache[idx] = max_profit
         
         return max_profit                 
-"""
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
@@ -28,7 +27,7 @@ class Solution:
         
         table = [0] * len(nums)
         table[0] = nums[0]
-        table[1] = max(nums[1], nums[0])
+        table[1] = max(nums[0], nums[1])
         
         for i in range(2, len(nums)):
             prof_this = nums[i] + table[i-2]
@@ -37,4 +36,23 @@ class Solution:
         
         return table[-1]
             
+"""
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        elif len(nums) == 2:
+            return max(nums[0], nums[1])
+        
+        two_before = nums[0]
+        one_before = max(nums[0], nums[1])
+        
+        for i in range(2, len(nums)):
+            max_prof = max(nums[i] + two_before, one_before)
+            two_before = one_before
+            one_before = max_prof
+        
+        return max_prof
             
+        
