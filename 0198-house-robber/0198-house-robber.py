@@ -35,6 +35,6 @@ class Solution:
             prof_prev = table[i-1]
             table[i] = max(prof_this, prof_prev)
         
-        return max(table[-1], table[-2])
+        return table[-1]
             
             
