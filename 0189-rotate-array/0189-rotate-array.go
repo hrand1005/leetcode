@@ -12,22 +12,16 @@ func rotate(nums []int, k int)  {
 */
 
 func rotate(nums []int, k int)  {
-    k = k % len(nums)
-    if k == 0 || len(nums) <= 1 {
-        return
-    }
-    
-    n := len(nums)-1
-    for i := 0; i <= n/2; i++ {
-        nums[i], nums[n-i] = nums[n-i], nums[i]
-    }
-    
-    first := k-1
-    for i := 0; i <= first/2; i++ {
-        nums[i], nums[first-i] = nums[first-i], nums[i]
-    }
-    
-    for i := 0; i <= (n-k)/2; i++{
-        nums[k+i], nums[n-i] = nums[n-i], nums[k+i]
+    k %= len(nums)
+    reverse(nums, 0, len(nums)-1)
+    reverse(nums, 0, k-1)
+    reverse(nums, k, len(nums)-1)
+}
+
+func reverse(nums []int, left, right int) {
+    for left < right {
+        nums[left], nums[right] = nums[right], nums[left]
+        left++
+        right--
     }
 }
