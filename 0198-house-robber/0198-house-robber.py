@@ -1,3 +1,4 @@
+"""
 class Solution:
     def rob(self, nums: List[int]) -> int:
         self.cache = {}
@@ -18,3 +19,22 @@ class Solution:
         self.cache[idx] = max_profit
         
         return max_profit                 
+"""
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        
+        table = [0] * len(nums)
+        table[0] = nums[0]
+        table[1] = max(nums[1], nums[0])
+        
+        for i in range(2, len(nums)):
+            prof_this = nums[i] + table[i-2]
+            prof_prev = table[i-1]
+            table[i] = max(prof_this, prof_prev)
+        
+        return max(table[-1], table[-2])
+            
+            
