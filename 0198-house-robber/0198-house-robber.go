@@ -23,14 +23,6 @@ func robRecursive(idx int, nums []int, cache map[int]int) int {
     
     return maxProfit
 }
-*/
-
-func max(a, b int) int {
-    if a < b {
-        return b
-    }
-    return a
-}
 
 func rob(nums []int) int {
     if len(nums) == 1 {
@@ -51,4 +43,31 @@ func rob(nums []int) int {
     }
     
     return table[len(table)-1]
+}
+*/
+
+func rob(nums []int) int {
+    
+    if len(nums) == 1 {
+        return nums[0]
+    }
+    
+    twoBefore := nums[0]
+    oneBefore := max(twoBefore, nums[1])
+    maxProfit := max(oneBefore, twoBefore)
+    
+    for i := 2; i < len(nums); i++ {
+        maxProfit = max(twoBefore+nums[i], oneBefore)
+        twoBefore = oneBefore
+        oneBefore = maxProfit
+    }
+    
+    return maxProfit
+}
+
+func max(a, b int) int {
+    if a < b {
+        return b
+    }
+    return a
 }
