@@ -23,7 +23,7 @@ func countPrimes(n int) int {
     primeCount := 0
     for _, v := range primeTable {
         if v == prime {
-            primeCount ++
+            primeCount++
         }
     }
     return primeCount
