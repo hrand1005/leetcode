@@ -24,22 +24,17 @@ class Solution:
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         self.finished = set()
-        
         for i in range(numCourses):
             if self.contains_cycle(i, set(), prerequisites):
                 return False
-        
         return True
     
     def contains_cycle(self, course: int, visited: Set[int], prerequisites: List[List[int]]) -> bool:
         if course in self.finished:
             return False
-        
         if course in visited:
             return True
-        
         visited.add(course)
-        
         for p in prerequisites:    
             if course == p[0]:
                 if self.contains_cycle(p[1], visited, prerequisites):
