@@ -20,7 +20,7 @@ class Solution:
         
         self.finished.add(course)       
         return True
-"""
+
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         self.finished = set()
@@ -42,3 +42,37 @@ class Solution:
                     
         self.finished.add(course)            
         return False            
+        
+"""
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # represent prerequisites as a graph dict k, v 
+        # where k is a vertex and v is a list of edges
+        graph = {}
+        # vertex to incoming edges
+        requires = {}
+        for p in prerequisites:
+            graph[p[1]] = graph.get(p[1], []) + [p[0]]
+            requires[p[0]] = requires.get(p[0], 0) + 1
+        
+        queue = []
+        for vertex in graph.keys():
+            print(vertex)
+            if requires.get(vertex, 0) == 0:
+                queue.append(vertex)
+        
+        while queue:
+            cur = queue.pop()
+            for e in graph.get(cur, []):
+                requires[e] -= 1
+                if requires[e] == 0:
+                    queue.append(e)
+        
+        for edges in requires.values():
+            if edges != 0:
+                return False
+        
+        return True
+        
+        
