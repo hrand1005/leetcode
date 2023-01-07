@@ -41,11 +41,11 @@ func canFinishRecursive(course int, visited, finishable map[int]bool, prerequisi
 
 func canFinish(numCourses int, prerequisites [][]int) bool {
     // prereqFor maps each course to a slice of
-    // courses that require it as a prerequisite
+    // courses for which it is a prerequisite
     prereqFor := make(map[int][]int, numCourses)
     
-    // prereqCount counts maps a course to the 
-    // number of prerequisites it requires
+    // prereqCount maps a course to its 
+    // number of prerequisites
     prereqCount := make(map[int]int, numCourses)
     
     // initialize the declared graph and map
@@ -55,8 +55,8 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
         prereqCount[course]++
     }
     
-    // initialize a queue with valid starting courses
-    // (courses with no prerequisites)
+    // initialize a queue with valid starting courses,
+    // i.e. courses with no prerequisites
     queue := make([]int, 0, numCourses)
     for course, _ := range prereqFor {
         if prereqCount[course] == 0 {
@@ -77,7 +77,7 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
         }
     }
     
-    // check that each course could have their 
+    // check that each course had its 
     // prerequisites met during bfs traversal
     for _, count := range prereqCount {
         if count != 0 {
