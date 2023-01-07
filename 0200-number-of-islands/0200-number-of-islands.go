@@ -20,20 +20,31 @@ func traverseIsland(i, j int, grid [][]byte) {
         queue = queue[:len(queue)-1]
         
         grid[cur[0]][cur[1]] = 0
-        neighbors := [][]int{
-            {cur[0]-1, cur[1]},
-            {cur[0]+1, cur[1]},
-            {cur[0], cur[1]-1},
-            {cur[0], cur[1]+1},
-        }
-        
+        neighbors := getNeighbors(cur[0], cur[1], grid)
         for _, n := range neighbors {
-            if 0 <= n[0] && n[0] < len(grid) && 0 <= n[1] && n[1] < len(grid[0]) {
-                if string(grid[n[0]][n[1]]) == "1" {
-                    queue = append(queue, n)
-                }
+            if string(grid[n[0]][n[1]]) == "1" {
+                queue = append(queue, n)
             }
         }
     }
     return
+}
+
+func getNeighbors(i, j int, grid[][]byte) [][]int {
+    neighbors := make([][]int, 0, 4)
+    
+    if 0 < i {
+        neighbors = append(neighbors, []int{i-1, j})
+    }
+    if i < len(grid)-1 {
+        neighbors = append(neighbors, []int{i+1, j})
+    }
+    if 0 < j {
+        neighbors = append(neighbors, []int{i, j-1})
+    }
+    if j < len(grid[i])-1 {
+        neighbors = append(neighbors, []int{i, j+1})
+    }
+    
+    return neighbors
 }
