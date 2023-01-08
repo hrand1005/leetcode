@@ -1,8 +1,5 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        if len(prerequisites) == 0 and numCourses == 1:
-            return [0]
-        
         prereq_for = {}
         prereq_count = {}
         
