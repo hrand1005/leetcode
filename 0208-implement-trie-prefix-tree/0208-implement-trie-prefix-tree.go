@@ -14,7 +14,7 @@ func Constructor() Trie {
 
 func (this *Trie) Insert(word string)  {
     this.words[word] = true
-    for i := 1; i < len(word)+1; i++ {
+    for i := 1; i < len(word); i++ {
         this.prefixes[word[:i]] = true
     }
 }
@@ -26,7 +26,7 @@ func (this *Trie) Search(word string) bool {
 
 
 func (this *Trie) StartsWith(prefix string) bool {
-    return this.prefixes[prefix]
+    return this.prefixes[prefix] || this.words[prefix]
 }
 
 
