@@ -1,4 +1,8 @@
 /*
+import (
+    "strconv"
+)
+
 func isPalindrome(x int) bool {
     xStr := strconv.Itoa(x)
     return palindrome(xStr)
