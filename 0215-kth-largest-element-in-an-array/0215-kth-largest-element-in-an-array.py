@@ -33,11 +33,11 @@ class Solution:
         
         partition = self.partition(nums, left, right)
         
-        if k == len(nums[partition:right+1]):
+        if k == (right+1-partition):
             return nums[partition]
-        elif k <= len(nums[partition+1:right+1]):
+        elif k <= (right-partition):
             return self.quick_select(nums, k, partition+1, right)
-        return self.quick_select(nums, k-len(nums[partition:right+1]), left, partition-1)
+        return self.quick_select(nums, k-(right+1-partition), left, partition-1)
    
     def partition(self, nums: List[int], left: int, right: int) -> int:
         l, r = left, right
