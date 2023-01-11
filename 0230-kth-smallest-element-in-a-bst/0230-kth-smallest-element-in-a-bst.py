@@ -13,17 +13,11 @@ class Solution:
     def kth_smallest_recursive(self, root: Optional[TreeNode], k: int, smallest: List[int]):
         if root == None:
             return 
-        
         if len(smallest) < k:
             self.kth_smallest_recursive(root.left, k, smallest)
-            
         if len(smallest) < k:
             smallest.append(root.val)
-            
         if len(smallest) < k:
             self.kth_smallest_recursive(root.right, k, smallest)
-        
         return 
-        
-        
-        
+            
