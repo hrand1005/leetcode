@@ -6,6 +6,7 @@
  *     Right *TreeNode
  * }
  */
+
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
     if root == nil {
         return nil
