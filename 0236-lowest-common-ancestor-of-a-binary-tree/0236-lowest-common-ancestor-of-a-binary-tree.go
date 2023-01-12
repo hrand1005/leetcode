@@ -8,9 +8,6 @@
  */
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-    if root == nil {
-        return nil
-    }
     if root == p || root == q {
         return root
     }
