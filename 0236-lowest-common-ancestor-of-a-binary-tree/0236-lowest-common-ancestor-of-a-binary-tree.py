@@ -46,6 +46,8 @@ class Solution:
             candidate = path_with_p.pop()
             if self.in_subtree(candidate, q):
                 return candidate
+            candidate.left = None
+            candidate.right = None
             
     def in_subtree(self, root: 'TreeNode', node: 'TreeNode') -> bool:
         if root == None:
