@@ -23,7 +23,6 @@ class Solution:
         in_right = self.in_subtree(root.right, node)
         
         return in_left or in_right
-"""
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
@@ -53,3 +52,19 @@ class Solution:
         if root == node:
             return True
         return self.in_subtree(root.left, node) or self.in_subtree(root.right, node)
+"""
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root == q or root == p:
+            return root
+        
+        left, right = None, None
+        if root.left:
+            left = self.lowestCommonAncestor(root.left, p, q)
+        if root.right:    
+            right = self.lowestCommonAncestor(root.right, p, q)
+        
+        if left and right:
+            return root
+        return left or right
