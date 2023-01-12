@@ -6,6 +6,7 @@
  * }
  */
 
+/*
 func deleteNode(node *ListNode) {
     current := node
     for current.Next.Next != nil {
@@ -16,9 +17,12 @@ func deleteNode(node *ListNode) {
     current.Next = nil
 }
 
-/*
 func deleteNode(node *ListNode) {
     node.Val = node.Next.Val
     node.Next = node.Next.Next
 }
 */
+
+func deleteNode(node *ListNode) {
+    *node = *node.Next
+}
