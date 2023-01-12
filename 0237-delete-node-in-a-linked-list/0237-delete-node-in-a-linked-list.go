@@ -1,0 +1,16 @@
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func deleteNode(node *ListNode) {
+    current := node
+    for current.Next != nil && current.Next.Next != nil {
+        current.Val = current.Next.Val
+        current = current.Next
+    }
+    current.Val = current.Next.Val
+    current.Next = nil
+}
