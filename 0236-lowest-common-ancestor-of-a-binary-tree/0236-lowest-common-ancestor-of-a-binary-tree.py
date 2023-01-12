@@ -46,16 +46,10 @@ class Solution:
             candidate = path_with_p.pop()
             if self.in_subtree(candidate, q):
                 return candidate
-        
-        return None
             
     def in_subtree(self, root: 'TreeNode', node: 'TreeNode') -> bool:
         if root == None:
             return False
         if root == node:
             return True
-        
-        in_left = self.in_subtree(root.left, node)
-        in_right = self.in_subtree(root.right, node)
-        
-        return in_left or in_right
+        return self.in_subtree(root.left, node) or self.in_subtree(root.right, node)
