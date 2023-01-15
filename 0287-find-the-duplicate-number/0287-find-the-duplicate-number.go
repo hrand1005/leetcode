@@ -1,3 +1,4 @@
+/*
 func findDuplicate(nums []int) int {
     low, high := 0, len(nums) - 1
     for low < high {
@@ -17,4 +18,21 @@ func findDuplicate(nums []int) int {
     }
     
     return low
+}
+*/
+
+func findDuplicate(nums []int) int {
+    slow, fast := nums[0], nums[nums[0]]
+    for slow != fast {
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+    }
+    
+    start := 0
+    for start != slow {
+        start = nums[start]
+        slow = nums[slow]
+    }
+    
+    return start
 }
