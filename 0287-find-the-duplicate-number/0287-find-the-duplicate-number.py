@@ -5,7 +5,7 @@ class Solution:
             if nums[i] in nums[i+1:]:
                 return nums[i]
         return 0       
-"""
+        
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
         low, high = 0, len(nums)-1
@@ -23,6 +23,18 @@ class Solution:
                 high = midpoint
         
         return low
-                
-                
-                
+"""
+
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        slow, fast = nums[0], nums[nums[0]]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        
+        start = 0
+        while start != slow:
+            start = nums[start]
+            slow = nums[slow]
+        
+        return start
