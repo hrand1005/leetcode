@@ -46,10 +46,9 @@ class Solution:
         table = [0] * (n+1)
         table[1] = 1
         for i in range(1, n+1):
-            if table[i] == 0:
-                min_squares = i
-                for j in range(1, int(i**0.5)+1):
-                    min_squares = min(min_squares, 1 + table[i-j*j])
-                table[i] = min_squares
+            min_squares = i
+            for j in range(1, int(i**0.5)+1):
+                min_squares = min(min_squares, 1 + table[i-j*j])
+            table[i] = min_squares
         
         return table[n]
