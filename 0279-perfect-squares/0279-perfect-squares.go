@@ -1,3 +1,4 @@
+/*
 import (
     "math"
 )
@@ -17,9 +18,40 @@ func numSquares(n int) int {
     return table[n]
 }
 
+*/
 func min(a, b int) int {
     if a < b {
         return a
     }
     return b
+}
+
+func numSquares(n int) int {
+    cache := make(map[int]int, n)
+    squares := make([]int, 0, n)
+    
+    for i := 1; i < n; i++ {
+        cache[i*i] = 1
+        squares = append(squares, i*i)
+    }
+    
+    var numSquaresRecursive func(int) int
+    numSquaresRecursive = func(num int) int {
+        if count, ok := cache[num]; ok {
+            return count
+        }
+        
+        minSquares := num
+        for _, s := range squares {
+            if num < s {
+                break
+            }
+            minSquares = min(minSquares, 1+numSquaresRecursive(num-s))
+        }
+        
+        cache[num] = minSquares
+        return minSquares
+    }
+    
+    return numSquaresRecursive(n)
 }
