@@ -4,7 +4,7 @@ func numSquares(n int) int {
     for i := 1; i < n+1; i++ {
         minSquares := i
         for j := 1; j < int(math.Pow(float64(i), 0.5)) + 1; j++ {
-            minSquares = min(minSquares, 1 + table[i-int(math.Pow(float64(j), 2.0))])
+            minSquares = min(minSquares, 1 + table[i-j*j])
         }
         table[i] = minSquares
     }
