@@ -39,8 +39,6 @@ class Solution:
         self.cache[n] = min_num
         return min_num
 
-"""
-
 class Solution:
     def numSquares(self, n: int) -> int:
         table = [0] * (n+1)
@@ -52,3 +50,21 @@ class Solution:
             table[i] = min_squares
         
         return table[n]
+
+"""
+
+class Solution:
+    def numSquares(self, n: int) -> int:
+        self.cache = {}
+        return self.num_squares_recursive(n)
+    
+    def num_squares_recursive(self, n) -> int:
+        if self.cache.get(n) != None:
+            return self.cache[n]
+        
+        min_num = n
+        for i in range(1, int(n**0.5)+1):
+            min_num = min(min_num, 1+self.num_squares_recursive(n-i*i))
+        
+        self.cache[n] = min_num
+        return min_num
