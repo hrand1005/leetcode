@@ -56,6 +56,7 @@ class Solution:
 class Solution:
     def numSquares(self, n: int) -> int:
         self.cache = {}
+        self.squares = [i*i for i in range(1, int(n**0.5)+1)]
         return self.num_squares_recursive(n)
     
     def num_squares_recursive(self, n) -> int:
@@ -63,8 +64,10 @@ class Solution:
             return self.cache[n]
         
         min_num = n
-        for i in range(1, int(n**0.5)+1):
-            min_num = min(min_num, 1+self.num_squares_recursive(n-i*i))
+        for s in self.squares:
+            if n < s:
+                break
+            min_num = min(min_num, 1+self.num_squares_recursive(n-s))
         
         self.cache[n] = min_num
         return min_num
