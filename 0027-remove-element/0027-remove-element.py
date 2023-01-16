@@ -16,7 +16,6 @@ class Solution:
                 nums[left], nums[right] = nums[right], nums[left]
                 
         return left
-"""
 
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
@@ -28,3 +27,14 @@ class Solution:
             else:
                 start += 1
         return start        
+        
+"""
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        i = 0
+        for n in nums:
+            if n != val:
+                nums[i] = n
+                i += 1    
+        return i        
