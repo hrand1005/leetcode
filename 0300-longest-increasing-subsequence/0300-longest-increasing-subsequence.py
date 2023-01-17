@@ -35,7 +35,7 @@ class Solution:
 
         self.cache[idx] = max_sub
         return max_sub
-"""
+        
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         table = [0] * len(nums)
@@ -48,3 +48,24 @@ class Solution:
             table[i] = max_sub_i
             
         return max(table)            
+"""
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        table = [nums[0]]
+        seq_len = 1
+        for i in range(1, len(nums)):
+            left, right = 0, len(table)-1
+            while left < right:
+                midpoint = (left + right) // 2
+                if table[midpoint] < nums[i]:
+                    left = midpoint + 1
+                else:
+                    right = midpoint
+                    
+            if table[left] < nums[i]:
+                table.append(nums[i])
+                seq_len += 1
+            else:    
+                table[left] = nums[i]
+        return seq_len
