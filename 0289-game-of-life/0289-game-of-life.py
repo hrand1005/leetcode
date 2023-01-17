@@ -1,8 +1,5 @@
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
-        """
-        Do not return anything, modify board in-place instead.
-        """
         for i in range(len(board)):
             for j in range(len(board[i])):
                 n = self.live_neighbors(i, j, board)
@@ -18,7 +15,7 @@ class Solution:
                     board[i][j] = 1
                 elif board[i][j] == -1:
                     board[i][j] = 0
-                    
+    
     def live_neighbors(self, i: int, j: int, board: List[List[int]]) -> int:
         positions = [
             (i-1, j-1),
