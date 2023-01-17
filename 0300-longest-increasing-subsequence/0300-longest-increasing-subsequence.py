@@ -15,7 +15,6 @@ class Solution:
                     stack.append((i, seq_len+1))
                     
         return max_sub            
-"""
 
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
@@ -37,15 +36,15 @@ class Solution:
         self.cache[idx] = max_sub
         return max_sub
 """
-
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        i = 0
-        while i < len(nums)-1:
-            if nums[i+1] <= nums[i]:
-                nums.pop(i)
-            else:
-                i += 1
-        print(nums)        
-        return len(nums)
-"""
+        table = [0] * len(nums)
+        max_sub = 1
+        for i in range(len(nums)-1, -1, -1):
+            max_sub_i = 1
+            for j in range(i, len(nums)):
+                if nums[i] < nums[j]:
+                    max_sub_i = max(max_sub_i, 1+table[j])
+            table[i] = max_sub_i
+            
+        return max(table)            
