@@ -27,18 +27,15 @@ class Solution:
 """
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        if amount == 0:
-            return 0
+        MAX_INT = float('inf')
+        table = [0] + [MAX_INT] * (amount)
         
-        table = [0] * (amount + 1)
-        MAX_INT = 2**32
-        
-        for i in range(len(table)):
+        for i in range(1, len(table)):
             min_coins = MAX_INT
             for c in coins:
                 if i-c == 0:
                     min_coins = min(min_coins, 1)
-                elif i-c > 0 and table[i-c] != 0:
+                elif i-c > 0 and table[i-c] != MAX_INT:
                     min_coins = min(min_coins, 1+table[i-c])
             table[i] = min_coins
         
