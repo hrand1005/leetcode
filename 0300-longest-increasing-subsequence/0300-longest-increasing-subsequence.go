@@ -24,7 +24,6 @@ func lengthOfLIS(nums []int) int {
     return longest
 }
 
-*/
 func max(a, b int) int {
     if a < b {
         return b
@@ -48,4 +47,29 @@ func lengthOfLIS(nums []int) int {
         longest = max(longest, v)
     }
     return longest
+}
+*/
+
+func lengthOfLIS(nums []int) int {
+    table := make([]int, 0, len(nums))
+    table = append(table, nums[0])
+    seqLen := 1
+    for _, n := range nums {
+        left, right := 0, len(table)-1
+        for left < right {
+            midpoint := (left+right)/2
+            if table[midpoint] < n {
+                left = midpoint+1
+            } else {
+                right = midpoint
+            }
+        }
+        if table[left] < n {
+            table = append(table, n)
+            seqLen++
+        } else {
+            table[left] = n
+        }
+    }
+    return seqLen
 }
