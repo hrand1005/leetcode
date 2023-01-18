@@ -1,29 +1,27 @@
-"""
+MAX_INT = 2**32
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        self.cache = {}
-        return self.coin_change_recursive(coins, amount)
+        self.cache = {0: 0}
+        min_coins = self.coin_change_recursive(coins, amount)
+        if min_coins == MAX_INT:
+            return -1
+        return min_coins
 
     def coin_change_recursive(self, coins: List[int], amount: int) -> int:
         if self.cache.get(amount) != None:
             return self.cache[amount]
         if amount in coins:
+            self.cache[amount] = 1
             return 1
-        if amount == 0:
-            return 0
         
-        global_min = -1
-        for i in range(len(coins)-1, -1, -1):
-            if 0 < amount - coins[i]:
-                min_coins = 1 + self.coinChange(coins[:i+1], amount - coins[i])
-                if min_coins != 0:
-                    if global_min == -1:
-                        global_min = min_coins
-                    else:    
-                        global_min = min(global_min, min_coins)
-                    
-        self.cache[amount] = global_min
-        return global_min            
+        min_coins = MAX_INT
+        for c in coins:
+            if amount-c >= 0:
+                min_coins = min(min_coins, 1+self.coin_change_recursive(coins, amount-c))
+                
+        self.cache[amount] = min_coins
+        return min_coins            
 """
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -42,3 +40,4 @@ class Solution:
         if table[amount] == MAX_INT:
             return -1
         return table[amount]
+"""
