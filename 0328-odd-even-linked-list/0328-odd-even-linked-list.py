@@ -11,8 +11,6 @@ class Solution:
         even = head
         odd_start = head.next
         odd = odd_start
-        
-        index = 2
         cur = head.next.next
         while even != None and odd != None:
             if even.next != None:
@@ -25,6 +23,5 @@ class Solution:
         cur = head
         while cur.next != None:
             cur = cur.next
-        
         cur.next = odd_start
         return head
