@@ -6,6 +6,7 @@
  *     Right *TreeNode
  * }
  */
+/*
 type NodeWithSum struct {
     *TreeNode
     Sum int
@@ -44,4 +45,20 @@ func hasPathSum(root *TreeNode, targetSum int) bool {
     }
     
     return false
+}
+*/
+
+func hasPathSum(root *TreeNode, targetSum int) bool {
+    return dfs(root, 0, targetSum)
+}
+
+func dfs(root *TreeNode, currentSum, targetSum int) bool {
+    if root == nil {
+        return false
+    }
+    currentSum += root.Val
+    if root.Left == nil && root.Right == nil {
+        return currentSum == targetSum
+    }
+    return dfs(root.Left, currentSum, targetSum) || dfs(root.Right, currentSum, targetSum)
 }
