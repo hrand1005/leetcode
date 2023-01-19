@@ -6,7 +6,7 @@
  * }
  */
 func oddEvenList(head *ListNode) *ListNode {
-    if head == nil || head.Next == nil {
+    if head == nil {
         return head
     }
     
