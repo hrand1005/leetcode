@@ -10,7 +10,7 @@ class Solution:
         
         even = head
         odd_start = head.next
-        odd = odd = odd_start
+        odd = odd_start
         
         index = 2
         cur = head.next.next
