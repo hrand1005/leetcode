@@ -38,15 +38,15 @@ func oddEvenList(head *ListNode) *ListNode {
     if head == nil {
         return head
     }
-    even := head
-    odd := head.Next
-    oddStart := odd
-    for odd != nil && odd.Next != nil {
-        even.Next = even.Next.Next
-        even = even.Next
+    odd := head
+    even := head.Next
+    evenStart := even
+    for even != nil && even.Next != nil {
         odd.Next = odd.Next.Next
         odd = odd.Next
+        even.Next = even.Next.Next
+        even = even.Next
     }
-    even.Next = oddStart
+    odd.Next = evenStart
     return head
 }
