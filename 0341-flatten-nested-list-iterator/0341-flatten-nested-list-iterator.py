@@ -33,7 +33,6 @@ class NestedIterator:
             else:
                 res += self._init_recursive(n.getList())
         return res        
-            
     
     def next(self) -> int:
         ret = self.res[self.idx]
