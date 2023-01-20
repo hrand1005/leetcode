@@ -24,6 +24,7 @@
  * func (this NestedInteger) GetList() []*NestedInteger {}
  */
 
+/*
 type NestedIterator struct {
     index int
     flat []int
@@ -57,6 +58,35 @@ func (this *NestedIterator) Next() int {
 func (this *NestedIterator) HasNext() bool {
     if this.index < len(this.flat) {
         return true
+    }
+    return false
+}
+*/
+
+type NestedIterator struct {
+    head int
+    stack []*NestedInteger
+}
+
+func Constructor(nestedList []*NestedInteger) *NestedIterator {
+    return &NestedIterator{
+        stack: nestedList,
+    }
+}
+
+func (this *NestedIterator) Next() int {
+    return this.head
+}
+
+func (this *NestedIterator) HasNext() bool {
+    for len(this.stack) != 0 {
+        nest := this.stack[0]
+        this.stack = this.stack[1:]
+        if nest.IsInteger() {
+            this.head = nest.GetInteger()
+            return true
+        }
+        this.stack = append(nest.GetList(), this.stack...)
     }
     return false
 }
