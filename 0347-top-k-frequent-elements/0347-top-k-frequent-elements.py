@@ -1,21 +1,21 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        occ = {}
+        freq = {}
         for n in nums:
-            occ[n] = occ.get(n, 0) + 1
+            freq[n] = freq.get(n, 0) + 1
         
-        occ_list = []
-        occ_to_val = {}
-        for value, occurrences in occ.items():
-            occ_list.append(occurrences)
-            occ_to_val[occurrences] = occ_to_val.get(occurrences, []) + [value]
+        frequencies = []
+        freq_to_val = {}
+        for num, freq in freq.items():
+            frequencies.append(freq)
+            freq_to_val[freq] = freq_to_val.get(freq, []) + [num]
         
-        occ_list.sort()
-        top_k_occurrences = set(occ_list[-k:])
+        frequencies.sort()
+        top_k_freqs = set(frequencies[-k:])
         
         result = []
-        for n in top_k_occurrences:
-            result += occ_to_val[n]
+        for n in top_k_freqs:
+            result += freq_to_val[n]
         
         return result
         
