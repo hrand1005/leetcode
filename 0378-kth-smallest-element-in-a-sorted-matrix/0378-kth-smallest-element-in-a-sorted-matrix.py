@@ -23,23 +23,31 @@ class Solution:
         else:
             res += l2
         return res
+
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        max_heap = []
+        for row in matrix:
+            for elem in row:
+                heappush(max_heap, -elem)
+                if k < len(max_heap):
+                    heappop(max_heap)
+        return -heappop(max_heap)            
+
 """
 
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        maxHeap = []
-        for row in matrix:
-            for elem in row:
-                heappush(maxHeap, -elem)
-                if k < len(maxHeap):
-                    heappop(maxHeap)
-        return -heappop(maxHeap)            
-
-"""
-class Solution:
-    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        minHeap = []
-        for row in matrix:
-            for elem in row:
+        min_heap = []
+        for i in range(min(len(matrix), k)):
+            heappush(min_heap, (matrix[i][0], i, 0))
+        
+        kth = 0
+        for i in range(k):
+            kth, row, col = heappop(min_heap)
+            if col + 1 < len(matrix): 
+                heappush(min_heap, (matrix[row][col+1], row, col+1))
                 
-"""
+        return kth        
+                
+                
