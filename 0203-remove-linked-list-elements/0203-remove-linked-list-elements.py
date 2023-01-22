@@ -8,16 +8,16 @@ class Solution:
         if head is None:
             return head
         
-        cur = head
-        while cur is not None and cur.val == val:
-            cur = cur.next
-        
-        new_head = cur
-        while cur is not None:
-            while cur.next is not None and cur.next.val == val:
+        dummy = ListNode()
+        dummy.next = head
+        cur = dummy
+        while cur is not None and cur.next is not None:
+            if cur.next.val == val:    
                 cur.next = cur.next.next
-            cur = cur.next    
-        return new_head    
+            else:
+                cur = cur.next
+        
+        return dummy.next    
             
         
         
