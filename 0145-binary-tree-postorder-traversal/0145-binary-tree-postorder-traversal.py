@@ -9,3 +9,16 @@ class Solution:
         if root == None:
             return []
         return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
+    
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        stack = [root]
+        postorder = []
+        while stack:
+            node = stack.pop()
+            if node == None:
+                continue
+            postorder.insert(0, node.val)    
+            stack.append(node.left)
+            stack.append(node.right)
+        return postorder    
