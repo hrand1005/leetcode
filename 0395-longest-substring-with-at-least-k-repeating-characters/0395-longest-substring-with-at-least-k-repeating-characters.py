@@ -1,3 +1,4 @@
+"""
 class Solution:
     def longestSubstring(self, s: str, k: int) -> int:
         self.cache = {}
@@ -53,7 +54,29 @@ class Solution:
             candidates.append(candidate)    
         
         return candidates
+"""
+
+class Solution:
+    def longestSubstring(self, s: str, k: int) -> int:
+        if len(s) < k:
+            return 0
         
+        occurrences = {}
+        for c in s:
+            occurrences[c] = occurrences.get(c, 0) + 1
         
+        char = s[0]
+        min_occ = len(s)
+        for c, occ in occurrences.items():
+            if occ < min_occ:
+                min_occ = occ
+                char = c
         
-        
+        longest = 0
+        if occurrences[char] < k:
+            for sub in s.split(char):
+                longest = max(longest, self.longestSubstring(sub, k))
+        else:
+            longest = len(s)
+                
+        return longest        
