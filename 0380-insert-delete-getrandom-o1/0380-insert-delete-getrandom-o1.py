@@ -29,14 +29,12 @@ class RandomizedSet:
         self.lst = []
 
     def insert(self, val: int) -> bool:
-        not_present = False
         if self.map.get(val) == None:
-            not_present = True
             self.map[val] = len(self.lst)
             self.lst.append(val)
-        return not_present
+            return True
+        return False
         
-
     def remove(self, val: int) -> bool:
         if self.map.get(val) == None:
             return False
