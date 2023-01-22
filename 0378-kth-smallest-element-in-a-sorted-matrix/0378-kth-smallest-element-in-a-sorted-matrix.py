@@ -34,8 +34,6 @@ class Solution:
                     heappop(max_heap)
         return -heappop(max_heap)            
 
-"""
-
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
         min_heap = []
@@ -50,4 +48,25 @@ class Solution:
                 
         return kth        
                 
-                
+"""
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        low, high = matrix[0][0], matrix[-1][-1]
+        kth = 0
+        while low <= high:
+            mid = (low + high) // 2
+            if k <= self.count_leq(mid, matrix):
+                kth = mid
+                high = mid - 1
+            else:
+                low = mid + 1
+        return kth        
+    
+    def count_leq(self, mid, matrix):
+        count = 0
+        col = len(matrix) - 1
+        for row in range(len(matrix)):
+            while 0 <= col and mid < matrix[row][col]:
+                col -= 1
+            count += col + 1    
+        return count    
