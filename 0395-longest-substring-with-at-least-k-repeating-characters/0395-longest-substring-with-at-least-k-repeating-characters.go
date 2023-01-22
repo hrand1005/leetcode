@@ -1,11 +1,11 @@
 func longestSubstring(s string, k int) int {
-    charCount := make(map[string]int, len(s))
+    count := make(map[string]int, len(s))
     for _, c := range s {
-        charCount[string(c)]++
+        count[string(c)]++
     }
     
     splitChar := ""
-    for c, v := range charCount {
+    for c, v := range count {
         if v < k {
             splitChar = c
             break
