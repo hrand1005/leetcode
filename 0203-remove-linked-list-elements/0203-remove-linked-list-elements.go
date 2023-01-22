@@ -5,6 +5,7 @@
  *     Next *ListNode
  * }
  */
+/*
 func removeElements(head *ListNode, val int) *ListNode {
     dummy := &ListNode{
         Next: head,
@@ -18,4 +19,16 @@ func removeElements(head *ListNode, val int) *ListNode {
         }
     }
     return dummy.Next
+}
+*/
+
+func removeElements(head *ListNode, val int) *ListNode {
+    if head == nil {
+        return nil
+    }
+    head.Next = removeElements(head.Next, val)
+    if head.Val == val {
+        return head.Next
+    }
+    return head
 }
