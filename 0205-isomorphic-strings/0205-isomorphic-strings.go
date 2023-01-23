@@ -1,17 +1,21 @@
+import (
+    "strings"
+)
+
 func isIsomorphic(s string, t string) bool {
-    smap := make(map[string]string)
-    tmap := make(map[string]string)
+    smap := make(map[byte]byte)
+    tmap := make(map[byte]byte)
     for i := 0; i < len(s); i++ {
-        smap[string(s[i])] = string(t[i])
-        tmap[string(t[i])] = string(s[i])
+        smap[s[i]] = t[i]
+        tmap[t[i]] = s[i]
     }
     
-    newS := ""
-    newT := ""
+    var newS strings.Builder
+    var newT strings.Builder
     for i := 0; i < len(s); i++ {
-        newS += tmap[string(t[i])]
-        newT += smap[string(s[i])]
+        newS.WriteByte(tmap[t[i]])
+        newT.WriteByte(smap[s[i]])
     }
     
-    return s == newS && t == newT
+    return s == newS.String() && t == newT.String()
 }
