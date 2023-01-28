@@ -1,3 +1,4 @@
+/*
 func isMatch(s string, p string) bool {
     table := make([][]bool, len(s)+1)
     for i := 0; i < len(table); i++ {
@@ -24,4 +25,42 @@ func isMatch(s string, p string) bool {
     }
     
     return table[len(s)][len(p)]
+}
+*/
+
+type pair struct {
+    s, p string
+}
+
+func isMatch(s string, p string) bool {
+    cache := map[pair]bool{
+        pair{"", ""}: true,
+    }
+    
+    var matches func(s, p string) bool
+    matches = func(s, p string) bool {
+        if cache[pair{s, p}] {
+            return true
+        }
+        if p == "" {
+            return false
+        }
+        
+        match := false
+        if p[len(p)-1] == '*' {
+            match = match || matches(s, p[:len(p)-2])
+            idx := len(s)-1
+            for 0 <= idx && (s[idx] == p[len(p)-2] || p[len(p)-2] == '.') {
+                match = match || matches(s[:idx], p[:len(p)-2])
+                idx--
+            }
+        } else if s != "" && (s[len(s)-1] == p[len(p)-1] || p[len(p)-1] == '.') {
+            match = match || matches(s[:len(s)-1], p[:len(p)-1])
+        }
+        
+        cache[pair{s, p}] = match
+        return match
+    }
+    
+    return matches(s, p)
 }
