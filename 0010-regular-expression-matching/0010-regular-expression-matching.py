@@ -1,3 +1,4 @@
+"""
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         table = [[False] * (len(p)+1) for _ in range(len(s)+1)]
@@ -17,3 +18,30 @@ class Solution:
                     table[i][j] = empty or nonempty
                     
         return table[-1][-1]
+"""
+
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        self.cache = {
+            ("", ""): True,
+        }
+        return self.is_match(s, p)
+    
+    def is_match(self, s: str, p: str) -> bool:
+        if self.cache.get((s, p)) != None:
+            return self.cache[(s, p)]
+        if p == "":
+            return False
+        
+        match = False
+        if p[-1] == "*":
+            idx = len(s)-1
+            match = match or self.is_match(s, p[:-2])
+            while 0 <= idx and (s[idx] == p[-2] or p[-2] == "."):
+                match = match or self.is_match(s[:idx], p[:-2])
+                idx -= 1
+        elif s != "" and (s[-1] == p[-1] or p[-1] == "."):
+            match = match or self.is_match(s[:-1], p[:-1])
+            
+        self.cache[(s, p)] = match
+        return match
