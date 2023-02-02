@@ -1,3 +1,7 @@
+import (
+    "math"
+)
+
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
     if len(nums2) < len(nums1) {
         nums1, nums2 = nums2, nums1
