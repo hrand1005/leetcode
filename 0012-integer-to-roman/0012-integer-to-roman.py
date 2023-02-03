@@ -25,15 +25,11 @@ class Solution:
                     num -= vals[i]
                     roman += symbols[i]
                     break
-                if i % 2 == 0 and i < len(vals)-2:
-                    if vals[i] - vals[i+2] <= num:
-                        num -= vals[i] - vals[i+2]
-                        roman += symbols[i+2] + symbols[i]
-                        break
-                if i % 2 == 1 and i < len(vals)-1:
-                    if vals[i] - vals[i+1] <= num:
-                        num -= vals[i] - vals[i+1]
-                        roman += symbols[i+1] + symbols[i]
+                offset = 2 - (i % 2)
+                if i < len(vals)-offset:
+                    if vals[i] - vals[i+offset] <= num:
+                        num -= vals[i] - vals[i+offset]
+                        roman += symbols[i+offset] + symbols[i]
                         break
                    
         return roman
