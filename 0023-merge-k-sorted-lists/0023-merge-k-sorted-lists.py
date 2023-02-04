@@ -38,7 +38,6 @@ class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if len(lists) == 0:
             return None
-        
         if len(lists) == 1:
             return lists[0]
         
@@ -50,7 +49,6 @@ class Solution:
     def mergeTwo(self, first, second) -> Optional[ListNode]:
         dummy = ListNode()
         cur = dummy
-        
         while first != None and second != None:
             if first.val < second.val:
                 cur.next = first
