@@ -22,14 +22,12 @@ class Solution:
     def find_min_idx(self, lists: List[Optional[ListNode]]) -> int:
         min_val = 2 ** 32
         idx = 0
-        
         all_none = True
         for i in range(len(lists)):
             if lists[i] != None and lists[i].val < min_val:
                 all_none = False
                 min_val = lists[i].val
                 idx = i
-        
         if all_none:
             return -1
         return idx
