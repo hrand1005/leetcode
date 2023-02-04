@@ -10,31 +10,31 @@ import (
     "math"
 )
 
+const notFound = -1
+
 func mergeKLists(lists []*ListNode) *ListNode {
     dummy := &ListNode{}
     cur := dummy
     for {
-        if idx, ok := minIdx(lists); ok {
-            cur.Next = lists[idx]
-            lists[idx] = lists[idx].Next
-            cur = cur.Next
-        } else {
+        idx := minIdx(lists)
+        if idx == notFound {
             break
         }
+        cur.Next = lists[idx]
+        lists[idx] = lists[idx].Next
+        cur = cur.Next
     }
     return dummy.Next
 }
 
-func minIdx(lists []*ListNode) (int, bool) {
+func minIdx(lists []*ListNode) int {
     minVal := math.MaxInt32
-    idx, ok := 0, false
-    
+    idx := notFound
     for i, n := range lists {
         if n != nil && n.Val < minVal {
-            ok = true
             minVal = n.Val
             idx = i
         }
     }
-    return idx, ok
+    return idx
 }
