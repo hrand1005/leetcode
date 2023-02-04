@@ -3,6 +3,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+"""
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         dummy = ListNode()
@@ -31,4 +32,37 @@ class Solution:
         if all_none:
             return -1
         return idx
+"""
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0:
+            return None
         
+        if len(lists) == 1:
+            return lists[0]
+        
+        midpoint = len(lists) // 2
+        first = self.mergeKLists(lists[:midpoint])
+        second = self.mergeKLists(lists[midpoint:])
+        return self.mergeTwo(first, second)    
+    
+    def mergeTwo(self, first, second) -> Optional[ListNode]:
+        dummy = ListNode()
+        cur = dummy
+        
+        while first != None and second != None:
+            if first.val < second.val:
+                cur.next = first
+                first = first.next
+            else:
+                cur.next = second
+                second = second.next
+            cur = cur.next    
+
+        if first == None:
+            cur.next = second
+        else:
+            cur.next = first
+        
+        return dummy.next
