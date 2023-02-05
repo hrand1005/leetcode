@@ -6,6 +6,7 @@
  * }
  */
 
+/*
 import (
     "math"
 )
@@ -37,4 +38,39 @@ func minIdx(lists []*ListNode) int {
         }
     }
     return idx
+}
+*/
+
+func mergeKLists(lists []*ListNode) *ListNode {
+    if len(lists) == 0 {
+        return nil
+    }
+    if len(lists) == 1 {
+        return lists[0]
+    }
+    midpoint := len(lists) / 2
+    first := mergeKLists(lists[:midpoint])
+    second := mergeKLists(lists[midpoint:])
+    return mergeTwo(first, second)
+}
+
+func mergeTwo(first, second *ListNode) *ListNode {
+    dummy := &ListNode{}
+    cur := dummy
+    for first != nil && second != nil {
+        if first.Val < second.Val {
+            cur.Next = first
+            first = first.Next
+        } else {
+            cur.Next = second
+            second = second.Next
+        }
+        cur = cur.Next
+    }
+    if first == nil {
+        cur.Next = second
+    } else {
+        cur.Next = first
+    }
+    return dummy.Next
 }
