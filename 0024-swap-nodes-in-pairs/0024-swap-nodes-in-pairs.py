@@ -3,6 +3,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+"""
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if head is None or head.next is None:
@@ -21,3 +22,15 @@ class Solution:
             prev = p1    
             
         return new_head   
+"""
+
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
+            return head
+        p1, p2 = head, head.next
+        nxt = head.next.next
+        p2.next = p1
+        p1.next = self.swapPairs(nxt)
+        return p2
+        
