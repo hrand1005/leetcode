@@ -1,3 +1,4 @@
+/*
 type withTarget struct {
     remaining int
     combo []int
@@ -34,6 +35,28 @@ func combinationSum(candidates []int, target int) [][]int {
                 combinations = append(combinations, append([]int{c}, this.combo...))
             }
         }
+    }
+    
+    return combinations
+}
+*/
+
+
+func combinationSum(candidates []int, target int) [][]int {
+    sort.Ints(candidates)
+    
+    combinations := make([][]int, 0)
+    for i, c := range candidates {
+        if c == target {
+            combinations = append(combinations, []int{c})
+        }
+        if c < target {
+            subcombos := combinationSum(candidates[i:], target-c)
+            for _, s := range subcombos {
+                full := append(s, c)
+                combinations = append(combinations, full)
+            }
+        } 
     }
     
     return combinations
