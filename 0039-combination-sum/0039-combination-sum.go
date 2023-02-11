@@ -39,8 +39,6 @@ func combinationSum(candidates []int, target int) [][]int {
     
     return combinations
 }
-*/
-
 
 func combinationSum(candidates []int, target int) [][]int {
     combinations := make([][]int, 0)
@@ -57,4 +55,29 @@ func combinationSum(candidates []int, target int) [][]int {
         } 
     }
     return combinations
+}
+*/
+
+func combinationSum(candidates []int, target int) [][]int {
+    combos := make([][]int, 0)
+    
+    var dfs func([]int, int, []int) 
+    dfs = func(cands []int, targ int, path []int) {
+        if targ < 0 {
+            return
+        }
+        if targ == 0 {
+            combos = append(combos, path)
+            return
+        }
+        for i, c := range cands {
+            newPath := make([]int, len(path))
+            copy(newPath, path)
+            dfs(cands[i:], targ-c, append(newPath, c))
+        }
+        return
+    }
+    
+    dfs(candidates, target, []int{})
+    return combos
 }
