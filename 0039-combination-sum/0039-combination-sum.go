@@ -43,8 +43,6 @@ func combinationSum(candidates []int, target int) [][]int {
 
 
 func combinationSum(candidates []int, target int) [][]int {
-    sort.Ints(candidates)
-    
     combinations := make([][]int, 0)
     for i, c := range candidates {
         if c == target {
@@ -58,6 +56,5 @@ func combinationSum(candidates []int, target int) [][]int {
             }
         } 
     }
-    
     return combinations
 }
