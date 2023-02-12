@@ -3,26 +3,20 @@ import (
 )
 
 func isPalindrome(s string) bool {
-    i := 0
-    j := len(s) - 1
+    l, r := 0, len(s)-1
     
-    for i < j {
-        left := rune(s[i])
-        right := rune(s[j])
-        
-        if !unicode.IsLetter(left) && !unicode.IsNumber(left) {
-            i++
-            continue
+    for l < r {
+        for l < r && !unicode.IsLetter(rune(s[l])) && !unicode.IsNumber(rune(s[l])) {
+            l++
         }
-        if !unicode.IsLetter(right) && !unicode.IsNumber(right) {
-            j--
-            continue
+        for r > l && !unicode.IsLetter(rune(s[r])) && !unicode.IsNumber(rune(s[r])) {
+            r--
         }
-        if unicode.ToLower(left) != unicode.ToLower(right) {
+        if l < r && unicode.ToLower(rune(s[l])) != unicode.ToLower(rune(s[r])) {
             return false
         }
-        
-        i++; j--
+        l++
+        r--
     }
     
     return true
