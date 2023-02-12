@@ -1,3 +1,5 @@
+# TWO QUEUES
+"""
 class MyStack:
 
     def __init__(self):
@@ -22,6 +24,30 @@ class MyStack:
 
     def empty(self) -> bool:
         return len(self.q1) == 0
+"""
+
+# ONE QUEUE
+class MyStack:
+
+    def __init__(self):
+        self.queue = []
+        self.last = None
+        
+    def push(self, x: int) -> None:
+        self.queue.append(x)
+        self.last = x
+
+    def pop(self) -> int:
+        for _ in range(len(self.queue)-1):
+            self.last = self.queue.pop(0)
+            self.queue.append(self.last)
+        return self.queue.pop(0)    
+
+    def top(self) -> int:
+        return self.last
+
+    def empty(self) -> bool:
+        return len(self.queue) == 0
 
 # Your MyStack object will be instantiated and called as such:
 # obj = MyStack()
