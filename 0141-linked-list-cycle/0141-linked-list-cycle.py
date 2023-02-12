@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+"""
 class Solution(object):
     def hasCycle(self, head):
         visited = {}
@@ -13,4 +14,14 @@ class Solution(object):
             visited[head] = True
             head = head.next
         return False    
-        
+"""
+
+class Solution(object):
+    def hasCycle(self, head):
+        fast, slow = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if fast == slow:
+                return True
+        return False    
