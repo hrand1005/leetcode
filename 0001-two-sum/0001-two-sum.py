@@ -3,7 +3,8 @@ class Solution:
         val_to_idx = {}
         for i in range(len(nums)):
             comp = target - nums[i]
-            if val_to_idx.get(comp) != None:
-                return [val_to_idx[comp], i]
+            compIdx = val_to_idx.get(comp)
+            if compIdx != None:
+                return [compIdx, i]
             val_to_idx[nums[i]] = i
         return []    
