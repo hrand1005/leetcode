@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+"""
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         if root is None:
@@ -24,5 +25,18 @@ class Solution:
         right_depth = self.max_depth(root.right)
         
         return max(left_depth, right_depth) + 1
-        
-        
+"""
+
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.max_diam = 0
+        self.max_depth(root)
+        return self.max_diam
+    
+    def max_depth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+        max_left = self.max_depth(root.left)
+        max_right = self.max_depth(root.right)
+        self.max_diam = max(self.max_diam, max_left + max_right)
+        return max(max_left, max_right) + 1
