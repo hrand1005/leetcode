@@ -29,7 +29,6 @@ func jump(nums []int) int {
     
     return jumpRec(nums, 0)
 }
-*/
 
 func jump(nums []int) int {
     table := make([]int, len(nums))
@@ -55,9 +54,9 @@ func min(a, b int) int {
     }
     return b
 }
+*/
 
 
-/*
 func jump(nums []int) int {
     if len(nums) <= 1 {
         return 0
@@ -81,4 +80,3 @@ func max(a, b int) int {
     }
     return a
 }
-*/
