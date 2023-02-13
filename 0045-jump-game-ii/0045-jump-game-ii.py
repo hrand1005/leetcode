@@ -1,5 +1,6 @@
 MAX_INT = 2 ** 32
 
+"""
 class Solution:
     def jump(self, nums: List[int]) -> int:
         self.cache = {}
@@ -23,3 +24,16 @@ class Solution:
         min_jumps += 1
         self.cache[pos] = min_jumps
         return min_jumps 
+"""
+
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        table = [MAX_INT] * len(nums)
+        table[0] = 0
+        
+        for i in range(len(nums)):
+            for j in range(1, nums[i]+1):
+                if i+j < len(table):
+                    table[i+j] = min(table[i+j], table[i]+1)
+        
+        return table[-1]
