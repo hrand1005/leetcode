@@ -1,3 +1,8 @@
+/*
+import (
+    "math"
+)
+
 func jump(nums []int) int {
     cache := make(map[int]int, len(nums))
     
@@ -24,6 +29,25 @@ func jump(nums []int) int {
     
     return jumpRec(nums, 0)
 }
+*/
+
+func jump(nums []int) int {
+    table := make([]int, len(nums))
+    for i := 0; i < len(table); i++ {
+        table[i] = math.MaxInt32
+    }
+    table[0] = 0
+    
+    for i := 0; i < len(nums); i++ {
+        for j := i+1; j <= i+nums[i]; j++ {
+            if j < len(nums) {
+                table[j] = min(table[j], table[i]+1)
+            }
+        }
+    }
+    
+    return table[len(table)-1]
+}
 
 func min(a, b int) int {
     if a < b {
@@ -31,6 +55,7 @@ func min(a, b int) int {
     }
     return b
 }
+
 
 /*
 func jump(nums []int) int {
