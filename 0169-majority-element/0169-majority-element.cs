@@ -2,6 +2,7 @@ public class Solution {
     public int MajorityElement(int[] nums) {
         int majorityElement = nums[0];
         int majorityElementCount = 0;
+        
         for (int i = 0; i < nums.Length; i++)
         {
             if (nums[i] == majorityElement)
@@ -19,6 +20,7 @@ public class Solution {
                 majorityElementCount = 1;
             }
         }
+        
         return majorityElement;
     }
 }
