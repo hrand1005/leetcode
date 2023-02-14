@@ -5,19 +5,11 @@ class Solution:
         row = self.find_row(matrix, target)
         if row == NOT_FOUND:
             return False
-        
-        low, high = 0, len(matrix[row])-1
-        while low <= high:
-            mid = (low + high) // 2
-            if matrix[row][mid] == target:
-                return True
-            elif matrix[row][mid] < target:
-                low = mid + 1
-            else:
-                high = mid - 1
-        return False        
+        col = self.find_col(matrix[row], target)
+        if col == NOT_FOUND:
+            return False
+        return True        
                 
-        
     def find_row(self, matrix: List[List[int]], target: int) -> int:
         low, high = 0, len(matrix)-1
         while low <= high:
@@ -30,3 +22,14 @@ class Solution:
                 high = mid - 1
         return NOT_FOUND            
         
+    def find_col(self, row: List[int], target: int) -> int:
+        low, high = 0, len(row)-1
+        while low <= high:
+            mid = (low + high) // 2
+            if row[mid] == target:
+                return mid
+            elif row[mid] < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return NOT_FOUND        
