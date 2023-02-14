@@ -1,11 +1,11 @@
 func minStartValue(nums []int) int {
-    minVal := nums[0]
-    total := nums[0]
-    for _, n := range nums[1:] {
+    minVal := 0
+    total := 0
+    for _, n := range nums {
         total += n
         minVal = min(minVal, total)
     }
-    return 1 - min(minVal, 0)
+    return 1 - minVal
 }
 
 func min(a, b int) int {
