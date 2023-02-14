@@ -44,7 +44,6 @@ class Solution:
             mid = (low + high) // 2
             row = mid // n
             col = mid % n
-            
             if matrix[row][col] == target:
                 return True
             elif matrix[row][col] < target:
