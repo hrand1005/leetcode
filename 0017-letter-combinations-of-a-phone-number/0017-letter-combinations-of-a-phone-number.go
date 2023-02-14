@@ -13,6 +13,26 @@ var numToLetters = map[string]string{
     "9": "wxyz",
 }
 
+func letterCombinations(digits string) []string {
+    if len(digits) == 0 {
+        return nil
+    }
+    
+    if len(digits) == 1 {
+        return strings.Split(numToLetters[digits], "")
+    }
+    
+    prefixes := strings.Split(numToLetters[string(digits[0])], "")
+    suffixes := letterCombinations(digits[1:])
+    combos := make([]string, 0)
+    for _, p := range prefixes {
+        for _, s := range suffixes {
+            combos = append(combos, p+s)
+        }
+    }
+    return combos
+}
+
 /*
 func letterCombinations(digits string) []string {
     if len(digits) == 0 {
@@ -37,6 +57,7 @@ func letterCombinations(digits string) []string {
 }
 */
 
+/*
 func letterCombinations(digits string) []string {
     if len(digits) == 0 {
         return nil
@@ -60,3 +81,4 @@ func letterCombinations(digits string) []string {
     
     return combos
 }
+*/
