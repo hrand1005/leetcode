@@ -13,7 +13,6 @@ class Solution:
         self.flatten(root.right)
         
         temp = root.right
-        
         root.right = root.left
         root.left = None
         
