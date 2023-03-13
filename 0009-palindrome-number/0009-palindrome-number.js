@@ -18,8 +18,10 @@ let isPalindrome = function(x) {
     if (x < 0) {
         return false;
     }
+    
     let original = x;
     let reverse = 0;
+    
     while (x != 0) {
         reverse *= 10;
         reverse += x % 10;
