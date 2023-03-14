@@ -34,6 +34,6 @@ var longestCommonPrefix = function(strs) {
         while (prev[i] && next[i] && prev[i] === next[i]) {
             i++;
         }
-        return strs[0].slice(0, i)
+        return strs[0].slice(0, i);
     });
-}
+};
