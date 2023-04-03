@@ -14,10 +14,10 @@ func summaryRanges(nums []int) []string {
         }
     }
     ranges = append(ranges, current)
-    return postProcess(ranges)
+    return formatRanges(ranges)
 }
 
-func postProcess(ranges [][]int) []string {
+func formatRanges(ranges [][]int) []string {
     rangeStrings := make([]string, len(ranges))
     for i := 0; i < len(rangeStrings); i++ {
         if ranges[i][0] == ranges[i][1] {
