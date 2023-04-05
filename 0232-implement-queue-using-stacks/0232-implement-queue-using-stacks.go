@@ -92,6 +92,7 @@ func (this *MyQueue) Empty() bool {
 // if the out-stack is empty
 func (this *MyQueue) flush() {
     if len(this.out) == 0 {
+        this.out = make([]int, 0, len(this.in))
         for len(this.in) > 0 {
             flushed := this.in[len(this.in)-1]
             this.in = this.in[:len(this.in)-1]
