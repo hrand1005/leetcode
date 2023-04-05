@@ -1,3 +1,4 @@
+/*
 type MyQueue struct {
     s1 []int
     s2 []int
@@ -48,7 +49,56 @@ func (this *MyQueue) Peek() int {
 func (this *MyQueue) Empty() bool {
     return len(this.s1) == 0
 }
+*/
 
+type MyQueue struct {
+    in []int
+    out []int
+}
+
+
+func Constructor() MyQueue {
+    return MyQueue{
+        in: []int{},
+        out: []int{},
+    }
+}
+
+
+func (this *MyQueue) Push(x int)  {
+    this.in = append(this.in, x)
+}
+
+
+func (this *MyQueue) Pop() int {
+    this.flush()
+    popped := this.out[len(this.out)-1]
+    this.out = this.out[:len(this.out)-1]
+    return popped
+}
+
+
+func (this *MyQueue) Peek() int {
+    this.flush()
+    return this.out[len(this.out)-1]
+}
+
+
+func (this *MyQueue) Empty() bool {
+    return len(this.in) == 0 && len(this.out) == 0
+}
+
+// flush dumps elements from in-stack to out-stack
+// if the out-stack is empty
+func (this *MyQueue) flush() {
+    if len(this.out) == 0 {
+        for len(this.in) > 0 {
+            flushed := this.in[len(this.in)-1]
+            this.in = this.in[:len(this.in)-1]
+            this.out = append(this.out, flushed)
+        }
+    }
+}
 
 /**
  * Your MyQueue object will be instantiated and called as such:
