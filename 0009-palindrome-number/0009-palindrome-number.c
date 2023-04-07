@@ -1,3 +1,4 @@
+/*
 bool isPalindrome(int x){
     char x_str[20];
     sprintf(x_str, "%d", x);
@@ -10,4 +11,22 @@ bool isPalindrome(int x){
     }
 
     return true;
+}
+*/
+bool isPalindrome(int x){
+    if (x < 0) {
+        return false;
+    }
+    
+    long int reverse = 0;
+    int xcopy = x;
+    
+    
+    while (xcopy != 0) {
+        reverse *= 10;
+        reverse += xcopy % 10;
+        xcopy /= 10;
+    }
+    
+    return (reverse == x);
 }
