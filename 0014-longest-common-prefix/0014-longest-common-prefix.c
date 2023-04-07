@@ -11,13 +11,8 @@ bool prefix_equal(int i, char** strs, int strs_len) {
 
 char * longestCommonPrefix(char ** strs, int strsSize){
     char* prefix;
-    int i;
+    int i = 0;
     
-    if (strsSize == 0) {
-        return false;
-    }
-    
-    i = 0;
     while (prefix_equal(i, strs, strsSize)) {
         i++;
     }
