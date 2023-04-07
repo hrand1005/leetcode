@@ -24,14 +24,12 @@ int romanToInt(char * s){
     int last = convert_numeral(s[0]);
     
     for (int i = 0; i < s_len; i++) {
-        printf("processing %c\n", s[i]);
         int val = convert_numeral(s[i]);
         if (val > last) {
             total -= 2 * last;
         } 
         total += val;
         last = val;
-        printf("total: %d\n", total);
     }
     
     return total;
