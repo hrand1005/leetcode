@@ -1,5 +1,5 @@
 bool isPalindrome(int x){
-    char x_str[50];
+    char x_str[20];
     sprintf(x_str, "%d", x);
     int x_str_len = strlen(x_str);
     
