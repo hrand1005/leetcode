@@ -18,9 +18,8 @@ bool isPalindrome(int x){
         return false;
     }
     
-    long int reverse = 0;
     int xcopy = x;
-    
+    long int reverse = 0;
     
     while (xcopy != 0) {
         reverse *= 10;
