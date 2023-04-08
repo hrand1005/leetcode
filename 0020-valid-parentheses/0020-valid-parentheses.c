@@ -20,10 +20,10 @@ bool isValid(char * s){
     char* queue = malloc(sizeof(char) * (s_len+1));
     
     for (int i = 0; i < s_len; i++) {
-        if (strchr(open, s[i]) != NULL) {
+        if (strchr(open, s[i])) {
             queue[idx] = s[i];
             idx++;
-        } else if (strchr(closed, s[i]) != NULL) {
+        } else if (strchr(closed, s[i])) {
             if (idx == 0 || !parens_match(queue[idx-1], s[i])) {
                 is_valid = false;
                 break;
