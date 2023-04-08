@@ -17,14 +17,14 @@ bool isValid(char * s){
     
     int idx = 0;
     int s_len = strlen(s);
-    char* queue = malloc(sizeof(char) * (s_len+1));
+    char* stack = malloc(sizeof(char) * (s_len+1));
     
     for (int i = 0; i < s_len; i++) {
         if (strchr(open, s[i])) {
-            queue[idx] = s[i];
+            stack[idx] = s[i];
             idx++;
         } else if (strchr(closed, s[i])) {
-            if (idx == 0 || !parens_match(queue[idx-1], s[i])) {
+            if (idx == 0 || !parens_match(stack[idx-1], s[i])) {
                 is_valid = false;
                 break;
             }
@@ -36,6 +36,6 @@ bool isValid(char * s){
         is_valid = false;
     }
                 
-    free(queue);
+    free(stack);
     return is_valid;
 }
