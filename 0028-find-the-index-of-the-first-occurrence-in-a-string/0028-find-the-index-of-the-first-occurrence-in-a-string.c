@@ -7,16 +7,9 @@ int strStr(char * haystack, char * needle){
         idx = -1;
     } else {
         int i = 0;
-        char* phaystack = haystack;
-        while (phaystack != start) {
-            phaystack++;
-            i++;
-        }
-        /*
         while (&haystack[i] != start) {
             i++;
         }
-        */
         idx = i;
     }
     return idx;
