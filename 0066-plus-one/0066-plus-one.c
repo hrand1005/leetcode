@@ -3,8 +3,7 @@
  */
 int* plusOne(int* digits, int digitsSize, int* returnSize){
     int carry = 1;
-    int* sum = malloc(sizeof(int) * digitsSize);
-    int* result;
+    int* sum = malloc(sizeof(int) * (digitsSize+1));
     
     for (int i = digitsSize-1; i >= 0; i--) {
         int digit = digits[i] + carry;
@@ -14,20 +13,19 @@ int* plusOne(int* digits, int digitsSize, int* returnSize){
         } else {
             carry = 0;
         }
-        sum[i] = digit;
+        sum[i+1] = digit;
     }
     
     if (carry) {
         *returnSize = digitsSize + 1;
-        result = malloc(sizeof(int) * (*returnSize));
-        memcpy(result+1, sum, digitsSize * sizeof(int));
-        result[0] = carry;
+        sum[0] = carry;
     } else {
         *returnSize = digitsSize;
-        result = malloc(sizeof(int) * (*returnSize));
-        memcpy(result, sum, digitsSize * sizeof(int));
+        // shift left
+        for (int i = 1; i < digitsSize+1; i++) {
+            sum[i-1] = sum[i];
+        }
     }
     
-    free(sum);
-    return result;
+    return sum;
 }
