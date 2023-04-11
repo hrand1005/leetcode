@@ -3,23 +3,30 @@ int max(int, int);
 char * addBinary(char * a, char * b){
     int a_len;
     int b_len;
-    int carry;
+    
     int res_len;
     char* res;
+    
+    int aval;
+    int bval;
+    int carry;
+    
+    int dint;
+    char dchar;
     
     a_len = strlen(a);
     b_len = strlen(b);
     
-    res_len = max(a_len, b_len)+2;
+    res_len = max(a_len, b_len)+2; // +2 for extra digit, null terminator
     res = malloc(sizeof(char) * res_len);
     memset(res, '\0', res_len);
     
     carry = 0;
     for (int i = 0; i < res_len-1; i++) {
-        int aval = (a_len-1-i >= 0) ? (a[a_len-1-i] == '1') : 0;
-        int bval = (b_len-1-i >= 0) ? (b[b_len-1-i] == '1') : 0;
-        int dint = carry + aval + bval;
-        char dchar;
+        aval = (a_len-1-i >= 0) ? (a[a_len-1-i] == '1') : 0;
+        bval = (b_len-1-i >= 0) ? (b[b_len-1-i] == '1') : 0;
+        dint = carry + aval + bval;
+        dchar;
         switch(dint) {
             case 0:
                 dchar = '0';
