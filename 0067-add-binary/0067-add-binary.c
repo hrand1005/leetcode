@@ -18,7 +18,6 @@ char * addBinary(char * a, char * b){
     for (int i = 0; i < res_len-1; i++) {
         int aval = (a_len-1-i >= 0) ? (a[a_len-1-i] == '1') : 0;
         int bval = (b_len-1-i >= 0) ? (b[b_len-1-i] == '1') : 0;
-        printf("i: %d\naval: %d\nbval: %d\n", i, aval, bval);
         int dint = carry + aval + bval;
         char dchar;
         switch(dint) {
@@ -39,11 +38,8 @@ char * addBinary(char * a, char * b){
                 carry = 1;
                 break;
         }
-        printf("writing dchar %c\n---\n", dchar);
         res[res_len-2-i] = dchar;
     }
-    
-    printf("unshifted: %s\n---\n", res);
     
     if (res[0] == '0') {
         // shift contents left
