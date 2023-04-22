@@ -8,14 +8,12 @@ class H2O:
 
 
     def hydrogen(self, releaseHydrogen: 'Callable[[], None]') -> None:
-        self.h.acquire()
-        self.group.wait()
-        releaseHydrogen()
-        self.h.release()
+        with self.h:
+            self.group.wait()
+            releaseHydrogen()
 
 
     def oxygen(self, releaseOxygen: 'Callable[[], None]') -> None:
-        self.o.acquire()
-        self.group.wait()
-        releaseOxygen()
-        self.o.release()
+        with self.o:
+            self.group.wait()
+            releaseOxygen()
