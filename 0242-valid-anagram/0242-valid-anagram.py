@@ -11,9 +11,5 @@ class Solution(object):
             if occ.get(l, 0) == 0:
                 return False
             occ[l] -= 1
-        
-        for v in occ.values():
-            if v != 0:
-                return False
             
-        return True    
+        return len(s) == len(t)
