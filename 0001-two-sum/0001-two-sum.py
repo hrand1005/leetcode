@@ -5,4 +5,3 @@ class Solution:
             if target-n in comps:
                 return [comps[target-n], i]
             comps[n] = i
-        return []    
