@@ -1,31 +1,10 @@
-/*
-import (
-    "sort"
-)
-
 func containsDuplicate(nums []int) bool {
-    sort.Ints(nums)
-    
-    for i := 1; i < len(nums); i++ {
-        if nums[i] == nums[i-1] {
+    seen := make(map[int]bool, len(nums))
+    for _, n := range nums {
+        if seen[n] {
             return true
         }
+        seen[n] = true
     }
-    
     return false
 }
-*/
-
-func containsDuplicate(nums []int) bool {
-    count := map[int]int{}
-    
-    for _, v := range nums {
-        if _, ok := count[v]; ok {
-            return true
-        }
-        count[v]++
-    }
-    
-    return false
-}
-
