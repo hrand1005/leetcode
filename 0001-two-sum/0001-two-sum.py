@@ -1,10 +1,8 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        val_to_idx = {}
-        for i in range(len(nums)):
-            comp = target - nums[i]
-            compIdx = val_to_idx.get(comp)
-            if compIdx != None:
-                return [compIdx, i]
-            val_to_idx[nums[i]] = i
+        comps = {}
+        for i, n in enumerate(nums):
+            if comps.get(target-n) is not None:
+                return [comps.get(target-n), i]
+            comps[n] = i
         return []    
