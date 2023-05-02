@@ -4,7 +4,7 @@ class Solution:
         for s in strs:
             key = self.get_hash(s)
             groups[key] = groups.get(key, []) + [s]
-        return list(groups.values())    
+        return groups.values()
     
     def get_hash(self, s: str) -> str:
         l = list(s)
