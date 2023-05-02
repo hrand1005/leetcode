@@ -1,24 +1,21 @@
-import (
-    "sort"
-    "strings"
-)
-
 func groupAnagrams(strs []string) [][]string {
-    result := [][]string{}
-    groupToIndex := map[string]int{}
-    
+    groups := make(map[string][]string, len(strs))
     for _, s := range strs {
-        slice := strings.Split(s, "")
-        sort.Strings(slice)
-        anagram := strings.Join(slice, "")
-        
-        if idx, ok := groupToIndex[anagram]; ok {
-            result[idx] = append(result[idx], s)
-        } else {
-            result = append(result, []string{s})
-            groupToIndex[anagram] = len(result) - 1
-        }
+        hash := getHash(s)
+        groups[hash] = append(groups[hash], s)
     }
     
+    result := make([][]string, 0, len(groups))
+    for _, g := range groups {
+        result = append(result, g)
+    }
     return result
+}
+
+func getHash(s string) string {
+    rs := []rune(s)
+    sort.Slice(rs, func(i, j int) bool {
+        return rs[i] < rs[j]
+    })
+    return string(rs)
 }
