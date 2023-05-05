@@ -24,17 +24,16 @@ func productExceptSelf(nums []int) []int {
 */
 func productExceptSelf(nums []int) []int {
     products := make([]int, len(nums))
-    products[0] = nums[0]
-    for i := 1; i < len(products); i++ {
-        products[i] = nums[i] * products[i-1]
+    pbefore := 1
+    for i := 0; i < len(products); i++ {
+        products[i] = pbefore
+        pbefore *= nums[i]
     }
     
-    reverse := 1
-    products[len(products)-1] = products[len(products)-2]
-    for i := len(nums)-2; i > 0; i-- {
-        reverse *= nums[i+1]
-        products[i] = products[i-1] * reverse
+    pafter := 1
+    for i := len(nums)-1; i >= 0; i-- {
+        products[i] *= pafter
+        pafter *= nums[i]
     }
-    products[0] = reverse * nums[1]
     return products
 }
