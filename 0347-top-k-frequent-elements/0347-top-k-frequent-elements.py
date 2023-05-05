@@ -1,20 +1,18 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freq = {}
+        count = {}
         for n in nums:
-            freq[n] = freq.get(n, 0) + 1
+            count[n] = count.get(n, 0) + 1
         
-        freq_to_val = {}
-        for num, freq in freq.items():
-            freq_to_val[freq] = freq_to_val.get(freq, []) + [num]
+        inverse = {}
+        for key, val in count.items():
+            inverse[val] = inverse.get(val, []) + [key]
         
-        frequencies = []
-        idx = len(nums)
-        while len(frequencies) < k:
-            frequencies += freq_to_val.get(idx, [])
-            idx -= 1
-            
-        return frequencies
+        result = []
+        i = len(nums)
+        while len(result) < k:
+            if inverse.get(i) is not None:
+                result += inverse[i]
+            i -= 1    
         
-            
-            
+        return result
