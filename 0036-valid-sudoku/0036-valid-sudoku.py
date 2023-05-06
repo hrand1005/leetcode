@@ -1,49 +1,41 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         for i in range(9):
-            if not self.valid_row(board, i):
+            if not self.valid_row(board, i) or \
+                not self.valid_col(board, i) or \
+                not self.valid_square(board, i):
                 return False
-            if not self.valid_column(board, i):
+        return True    
+    
+    def valid_row(self, board: List[List[str]], r: int) -> bool:
+        seen = set()
+        for v in board[r]:
+            if v in seen:
                 return False
-            if not self.valid_square(board, i):
-                return False
-            
-        return True     
-            
-    def valid_row(self, board: List[List[str]], index: int) -> bool:
-        row = board[index]
-        occurred = {}
-        for n in row:
-            if n != '.' and occurred.get(n) != None:
-                print(f'Encountered {n} again in row')
-                return False
-            occurred[n] = 1
-        
+            if v != ".":
+                seen.add(v)
         return True
+    
         
-    def valid_column(self, board: List[List[str]], index: int) -> bool:
-        occurred = {}
-        for i in range(9):
-            n = board[i][index]
-            if n != '.' and occurred.get(n) != None:
-                print(f'Encountered {n} again in column')
+    def valid_col(self, board: List[List[str]], c: int) -> bool:
+        seen = set()
+        for row in board:
+            v = row[c]
+            if v in seen:
                 return False
-            occurred[n] = 1
-        
+            if v != ".":
+                seen.add(v)
         return True
-        
-    def valid_square(self, board: List[List[str]], index: int) -> bool:
-        i_offset = (index % 3) * 3
-        j_offset = (index // 3) * 3
-        
-        occurred = {}
-        for i in range(3):
-            for j in range(3):
-                n = board[i_offset+i][j_offset+j]
-                if n != '.' and occurred.get(n) != None:
-                    print(f'Encountered {n} again in square')
+    
+    def valid_square(self, board: List[List[str]], s: int) -> bool:
+        r = (s // 3) * 3
+        c = (s % 3) * 3
+        seen = set()
+        for i in range(r, r+3):
+            for j in range(c, c+3):
+                v = board[i][j]
+                if v in seen:
                     return False
-                occurred[n] = 1
-                
-        return True       
-        
+                if v != ".":
+                    seen.add(v)
+        return True
