@@ -1,66 +1,49 @@
-const blank = byte(46)
-
 func isValidSudoku(board [][]byte) bool {
     for i := 0; i < 9; i++ {
-        if !validRow(board, i) {
-            return false
-        }
-        
-        if !validColumn(board, i) {
-            return false
-        }
-        
-        if !validSquare(board, i) {
+        if !validRow(board, i) || !validCol(board, i) || !validSquare(board, i) {
             return false
         }
     }
-    
     return true
 }
 
-func validRow(board [][]byte, index int) bool {
-    seen := map[byte]bool{}
-    row := board[index]
-    
-    for _, n := range row {
-        if _, ok := seen[n]; ok && n != blank {
+func validRow(board [][]byte, r int) bool {
+    seen := make(map[byte]bool)
+    for _, v := range board[r] {
+        if v != '.' && seen[v] {
             return false
         }
-        seen[n] = true
+        seen[v] = true
     }
-    
     return true
 }
 
-func validColumn(board [][]byte, index int) bool {
-    seen := map[byte]bool{}
-    
-    for i := 0; i < 9; i++ {
-        n := board[i][index]
-        if _, ok := seen[n]; ok && n != blank {
+func validCol(board [][]byte, c int) bool {
+    seen := make(map[byte]bool)
+    for _, row := range board {
+        v := row[c]
+        if v != '.' && seen[v] {
             return false
         }
-        seen[n] = true
+        seen[v] = true
     }
-    
     return true
 }
 
-func validSquare(board [][]byte, index int) bool {
-    seen := map[byte]bool{}
-    
-    iOffset := (index % 3) * 3
-    jOffset := (index / 3) * 3
-    
-    for i := 0; i < 3; i++ {
-        for j := 0; j < 3; j++ {
-            n := board[iOffset + i][jOffset + j]
-            if _, ok := seen[n]; ok && n != blank {
+func validSquare(board [][]byte, s int) bool {
+    row := (s / 3) * 3
+    col := (s % 3) * 3
+    fmt.Printf("row: %v, col: %v\n", row, col)
+    seen := make(map[byte]bool)
+    for i := row; i < row+3; i++ {
+        for j := col; j < col+3; j++ {
+            v := board[i][j]
+            if v != '.' && seen[v] {
+                fmt.Printf("square: %c\n", v)
                 return false
             }
-            seen[n] = true
+            seen[v] = true
         }
     }
-    
     return true
 }
