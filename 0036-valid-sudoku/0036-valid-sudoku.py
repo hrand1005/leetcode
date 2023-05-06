@@ -15,7 +15,6 @@ class Solution:
             if v != ".":
                 seen.add(v)
         return True
-    
         
     def valid_col(self, board: List[List[str]], c: int) -> bool:
         seen = set()
