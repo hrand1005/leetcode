@@ -33,13 +33,11 @@ func validCol(board [][]byte, c int) bool {
 func validSquare(board [][]byte, s int) bool {
     row := (s / 3) * 3
     col := (s % 3) * 3
-    fmt.Printf("row: %v, col: %v\n", row, col)
     seen := make(map[byte]bool)
     for i := row; i < row+3; i++ {
         for j := col; j < col+3; j++ {
             v := board[i][j]
             if v != '.' && seen[v] {
-                fmt.Printf("square: %c\n", v)
                 return false
             }
             seen[v] = true
