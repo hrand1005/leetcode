@@ -5,11 +5,10 @@ class Solution:
             if c == "(" or c == "[" or c == "{":
                 open_stack.append(c)
             else:
-                if len(open_stack) == 0:
+                if len(open_stack) == 0 or not self.matches(open_stack[-1], c):
                     return False
                 op = open_stack.pop()
-                if not self.matches(op, c):
-                    return False
+                
         return len(open_stack) == 0
     
     def matches(self, op: str, cl: str) -> bool:
