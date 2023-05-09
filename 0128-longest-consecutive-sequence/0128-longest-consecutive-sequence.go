@@ -1,10 +1,14 @@
 func longestConsecutive(nums []int) int {
-    numSet := toSet(nums)
+    seen := make(map[int]bool)
+    for _, n := range nums {
+        seen[n] = true
+    }
+    
     longest := 0
-    for n := range numSet {
-        if exists := numSet[n-1]; !exists {
+    for _, n := range nums {
+        if !seen[n-1] {
             seq := 1
-            for numSet[n+seq] {
+            for seen[n+seq] {
                 seq++
             }
             longest = max(longest, seq)
@@ -13,17 +17,9 @@ func longestConsecutive(nums []int) int {
     return longest
 }
 
-func toSet(s []int) map[int]bool {
-    set := make(map[int]bool, len(s)) 
-    for _, v := range s {
-        set[v] = true
+func max(a, b int) int {
+    if a > b {
+        return a
     }
-    return set
-}
-
-func max(x, y int) int {
-    if x < y {
-        return y
-    }
-    return x
+    return b
 }
