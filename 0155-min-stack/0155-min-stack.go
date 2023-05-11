@@ -1,55 +1,11 @@
-/*
 type MinStack struct {
-    // holds pairs of {min, val}
-    stack [][]int
+    n *node 
 }
-
-
-func Constructor() MinStack {
-    return MinStack{}
-}
-
-
-func (this *MinStack) Push(val int)  {
-    if len(this.stack) == 0 {
-        this.stack = [][]int{ {val, val} }
-    } else {
-        minVal := min(this.stack[len(this.stack)-1][0], val)
-        this.stack = append(this.stack, []int{minVal, val})
-    }
-}
-
-
-func (this *MinStack) Pop()  {
-    this.stack = this.stack[:len(this.stack)-1]
-}
-
-
-func (this *MinStack) Top() int {
-    return this.stack[len(this.stack)-1][1]
-}
-
-
-func (this *MinStack) GetMin() int {
-    return this.stack[len(this.stack)-1][0]
-}
-
-func min(a, b int) int {
-    if a < b {
-        return a
-    }
-    return b
-}
-*/
 
 type node struct {
     prev *node
+    localMin int
     val int
-    minVal int
-}
-
-type MinStack struct {
-    current *node
 }
 
 
@@ -59,34 +15,33 @@ func Constructor() MinStack {
 
 
 func (this *MinStack) Push(val int)  {
-    if this.current == nil {
-        this.current = &node{
+    if this.n == nil {
+        this.n = &node{
+            localMin: val,
             val: val,
-            minVal: val,
         }
     } else {
-        minVal := min(this.current.minVal, val)
-        this.current = &node{
+        this.n = &node{
+            prev: this.n,
+            localMin: min(this.n.localMin, val),
             val: val,
-            minVal: minVal,
-            prev: this.current,
         }
     }
 }
 
 
-func (this *MinStack) Pop()  {
-    this.current = this.current.prev
+func (this *MinStack) Pop() {
+    this.n = this.n.prev
 }
 
 
 func (this *MinStack) Top() int {
-    return this.current.val
+    return this.n.val
 }
 
 
 func (this *MinStack) GetMin() int {
-    return this.current.minVal
+    return this.n.localMin
 }
 
 func min(a, b int) int {
@@ -95,3 +50,13 @@ func min(a, b int) int {
     }
     return b
 }
+
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(val);
+ * obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.GetMin();
+ */
