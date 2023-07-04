@@ -1,10 +1,3 @@
-func max(a, b int) int {
-    if a > b {
-        return a
-    }
-    return b
-}
-
 func mergeAlternately(word1 string, word2 string) string {
     result := ""
     for i := 0; i < max(len(word1), len(word2)); i++ {
@@ -16,4 +9,11 @@ func mergeAlternately(word1 string, word2 string) string {
         }
     }
     return result
+}
+
+func max(a, b int) int {
+    if a > b {
+        return a
+    }
+    return b
 }
