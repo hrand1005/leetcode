@@ -26,5 +26,6 @@ int placeable_flowers(int* flowerbed, int flowerbed_size) {
 }
 
 bool canPlaceFlowers(int* flowerbed, int flowerbedSize, int n){
-    return (placeable_flowers(flowerbed, flowerbedSize) >= n);
+    int max_placeable = placeable_flowers(flowerbed, flowerbedSize);
+    return max_placeable >= n;
 }
