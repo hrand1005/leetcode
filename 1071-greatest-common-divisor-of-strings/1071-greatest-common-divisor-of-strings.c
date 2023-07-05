@@ -29,8 +29,7 @@ char * gcdOfStrings(char * str1, char * str2){
         result = calloc(sizeof(char), 1);
     else {
         n = gcd(s1_len, s2_len);
-        result = malloc(sizeof(char) * n + 1);
-        result[n] = '\0';
+        result = calloc(sizeof(char), n+1);
         strncpy(result, str1, n);
     }
         
