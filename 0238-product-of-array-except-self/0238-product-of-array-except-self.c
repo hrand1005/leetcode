@@ -34,9 +34,8 @@ int* productExceptSelf(int* nums, int numsSize, int* returnSize){
     int *result = malloc(sizeof(int) * numsSize);
     
     result[0] = nums[0];
-    for (i = 1; i < numsSize; i++) {
+    for (i = 1; i < numsSize; i++)
         result[i] = result[i-1] * nums[i];
-    }
     
     backwards = 1;
     for (i = numsSize-1; i > 0; i--) {
