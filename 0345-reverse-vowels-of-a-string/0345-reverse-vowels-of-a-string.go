@@ -14,9 +14,7 @@ func reverseVowels(s string) string {
         for right > left && !strings.Contains(vowels, sSlice[right]) {
             right--
         }
-        if strings.Contains(vowels, sSlice[left]) && strings.Contains(vowels, sSlice[right]) {
-            sSlice[left], sSlice[right] = sSlice[right], sSlice[left]
-        }
+        sSlice[left], sSlice[right] = sSlice[right], sSlice[left]
         left++
         right--
     } 
