@@ -13,10 +13,8 @@ char * reverseVowels(char * s){
             right--;
         
         tmp = s[left];
-        s[left] = s[right];
-        s[right] = tmp;
-        left++;
-        right--;
+        s[left++] = s[right];
+        s[right--] = tmp;
     }
     return s;
 }
