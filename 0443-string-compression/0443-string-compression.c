@@ -12,7 +12,6 @@ int compress(char* chars, int charsSize){
                 chars[idx++] = c;
             else if (count > 1) {
                 chars[idx++] = c;
-                memset(buf, 0, sizeof(buf));
                 sprintf(buf, "%d", count);
                 for (j = 0; j < strlen(buf); j++)
                     chars[idx++] = buf[j];
@@ -21,12 +20,9 @@ int compress(char* chars, int charsSize){
             c = chars[i];
         }
     }
-    if (count == 1) {
-        chars[idx++] = c;
-    }
-    else if (count > 1) {
-        chars[idx++] = c;
-        memset(buf, 0, sizeof(buf));
+    
+    chars[idx++] = c;
+    if (count > 1) {
         sprintf(buf, "%d", count);
         for (i = 0; i < strlen(buf); i++)
             chars[idx++] = buf[i];
