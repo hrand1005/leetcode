@@ -31,6 +31,5 @@ int compress(char* chars, int charsSize){
         for (i = 0; i < strlen(buf); i++)
             chars[idx++] = buf[i];
     }
-    // chars[idx] = '\0';
     return idx;
 }
