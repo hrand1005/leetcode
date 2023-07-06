@@ -11,11 +11,10 @@ char * reverseVowels(char * s){
             left++;
         while (right > left && !strchr(vowels, s[right]))
             right--;
-        if (strchr(vowels, s[left]) && strchr(vowels, s[right])) {
-            tmp = s[left];
-            s[left] = s[right];
-            s[right] = tmp;
-        }
+        
+        tmp = s[left];
+        s[left] = s[right];
+        s[right] = tmp;
         left++;
         right--;
     }
