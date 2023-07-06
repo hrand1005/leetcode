@@ -9,14 +9,12 @@ int* productExceptSelf(int* nums, int numsSize, int* returnSize){
     int *result = malloc(sizeof(int) * numsSize);
     
     forwards[0] = nums[0];
-    for (i = 1; i < numsSize; i++) {
+    for (i = 1; i < numsSize; i++) 
         forwards[i] = forwards[i-1] * nums[i];
-    }
     
     backwards[numsSize-1] = nums[numsSize-1];
-    for (i = numsSize-2; i >= 0; i--) {
+    for (i = numsSize-2; i >= 0; i--)
         backwards[i] = backwards[i+1] * nums[i];
-    }
     
     result[0] = backwards[1];
     result[numsSize-1] = forwards[numsSize-2];
