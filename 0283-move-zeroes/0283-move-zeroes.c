@@ -1,11 +1,11 @@
 void moveZeroes(int* nums, int numsSize){
-    int zero_idx = 0;
-    for (int i = 0; i < numsSize; i++) {
-        if (nums[zero_idx] == 0) {
-            nums[zero_idx] = nums[i];
-            nums[i] = 0;
-        } 
-        if (nums[zero_idx] != 0)
-            zero_idx++;
+    int i, zidx, temp;
+    zidx = 0;
+    for (i = 0; i < numsSize; i++) {
+        if (nums[i] != 0) {
+            temp = nums[i];
+            nums[i] = nums[zidx];
+            nums[zidx++] = temp;
+        }
     }
 }
