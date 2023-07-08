@@ -5,8 +5,7 @@ func longestSubarray(nums []int) int {
         if n == 0 {
             zeroFound = true
             maxSeq = max(maxSeq, before + after)
-            before = after
-            after = 0
+            before, after = after, 0
         } else {
             after++
         }
