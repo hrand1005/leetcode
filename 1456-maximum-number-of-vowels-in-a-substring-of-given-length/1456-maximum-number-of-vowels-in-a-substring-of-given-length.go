@@ -9,6 +9,9 @@ func maxVowels(s string, k int) int {
     
     l, r := 0, k
     for r < len(s) {
+        if maxVowels == k {
+            return maxVowels
+        }
         if isVowel(string(s[l])) {
             vowelCount--
         }
