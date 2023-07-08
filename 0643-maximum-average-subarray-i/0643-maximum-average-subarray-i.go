@@ -7,7 +7,6 @@ func findMaxAverage(nums []int, k int) float64 {
         queue = append(queue[1:], v)
         maxTotal = max(maxTotal, qTotal)
     }
-    fmt.Println(maxTotal)
     return float64(maxTotal) / float64(k)
 }
 
