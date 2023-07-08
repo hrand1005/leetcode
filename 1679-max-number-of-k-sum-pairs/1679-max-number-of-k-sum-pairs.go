@@ -1,4 +1,29 @@
 func maxOperations(nums []int, k int) int {
+    sort.Ints(nums)
+    
+    ops := 0
+    left, right := 0, len(nums) - 1
+    
+    for left < right {
+        lNum := nums[left]
+        rNum := nums[right]
+        if lNum + rNum == k {
+            ops++
+            left++
+            right--
+        } else if lNum + rNum < k {
+            left++
+        } else {
+            right--
+        }
+    }
+    return ops
+}
+
+
+/*
+// Map Solution
+func maxOperations(nums []int, k int) int {
     nCount := make(map[int]int)
     for _, n := range nums {
         nCount[n]++
@@ -26,8 +51,10 @@ func min(a, b int) int {
     }
     return b
 }
+*/
 
 /*
+// Map Solution (suboptimal)
 func maxOperations(nums []int, k int) int {
     ops := 0
     for len(nums) != 0 {
