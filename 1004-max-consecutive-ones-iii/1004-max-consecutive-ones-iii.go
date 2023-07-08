@@ -1,4 +1,34 @@
 func longestOnes(nums []int, k int) int {
+    zeroes := 0
+    l, r := 0, 0
+    maxSeq := 0
+    for r < len(nums) {
+        if nums[r] == 0 {
+            zeroes++
+        }
+        
+        if zeroes > k {
+            if nums[l] == 0 {
+                zeroes--
+            }
+            l++
+        }
+        
+        maxSeq = max(maxSeq, (r - l) + 1)
+        r++
+    }
+    return maxSeq
+}
+
+func max(a, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+
+/*
+func longestOnes(nums []int, k int) int {
     ones := k
     maxSeq := 0
     l, r := 0, 0
@@ -26,6 +56,8 @@ func max(a, b int) int {
     }
     return b
 }
+*/
+
 /*
 func longestOnes(nums []int, k int) int {
     seq := 0
