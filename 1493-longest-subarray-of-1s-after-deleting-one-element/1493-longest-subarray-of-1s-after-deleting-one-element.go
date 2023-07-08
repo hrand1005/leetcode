@@ -1,4 +1,21 @@
 func longestSubarray(nums []int) int {
+    r, l, zeroes := 0, 0, 0
+    for ; r < len(nums); r++ {
+        if nums[r] == 0 {
+            zeroes++
+        } 
+        if zeroes > 1 {
+            if nums[l] == 0 {
+                zeroes--
+            }
+            l++
+        }
+    }
+    return r - l - 1
+}
+
+/*
+func longestSubarray(nums []int) int {
     zeroFound := false
     before, after, maxSeq := 0, 0, 0
     for _, n := range nums {
@@ -23,3 +40,4 @@ func max(a, b int) int {
     }
     return b
 }
+*/
