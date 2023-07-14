@@ -13,10 +13,8 @@ func decodeString(s string) string {
 func decodeLast(encoding string) string {
     start := strings.LastIndex(encoding, "[")
     sub := encoding[start+1:]
-    
     end := start
     start--
-    
     for start >= 0 && unicode.IsDigit(rune(encoding[start])) {
         start--
     }
