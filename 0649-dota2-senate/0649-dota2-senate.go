@@ -1,4 +1,32 @@
 func predictPartyVictory(senate string) string {
+    rqueue := make([]int, 0, len(senate))
+    dqueue := make([]int, 0, len(senate))
+    for i, p := range senate {
+        if p == 'R' {
+            rqueue = append(rqueue, i)
+        } else {
+            dqueue = append(dqueue, i)
+        }
+    }
+    
+    for len(rqueue) != 0 && len(dqueue) != 0 {
+        r, d := rqueue[0], dqueue[0]
+        rqueue, dqueue = rqueue[1:], dqueue[1:]
+        
+        if r < d {
+            rqueue = append(rqueue, r+len(senate))
+        } else {
+            dqueue = append(dqueue, d+len(senate))
+        }
+    }
+    
+    if len(dqueue) == 0 {
+        return "Radiant"
+    }
+    return "Dire"
+}
+/*
+func predictPartyVictory(senate string) string {
     partyCount := make(map[rune]int)
     for _, p := range senate {
         partyCount[p]++
@@ -31,3 +59,4 @@ func predictPartyVictory(senate string) string {
     }
     return "Dire"
 }
+*/
