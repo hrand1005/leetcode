@@ -3,7 +3,6 @@ func predictPartyVictory(senate string) string {
     for _, p := range senate {
         partyCount[p]++
     }
-    
 
     rVote, dVote := 0, 0
     for partyCount['R'] != 0 && partyCount['D'] != 0 {
