@@ -11,7 +11,7 @@ func simulateAsteroid(stack []int, asteroid int) []int {
         return []int{asteroid}
     }
     stack = append(stack, asteroid)
-    for len(stack) > 1 && stack[len(stack)-2] > 0 &&  stack[len(stack)-1] < 0 {
+    for len(stack) > 1 && willCollide(stack[len(stack)-2], stack[len(stack)-1]) {
         l, r := stack[len(stack)-2], stack[len(stack)-1]
         if l + r == 0 {
             return stack[:len(stack)-2]
@@ -23,6 +23,10 @@ func simulateAsteroid(stack []int, asteroid int) []int {
         stack = append(stack[:len(stack)-2], survivor)
     }
     return stack
+}
+
+func willCollide(l, r int) bool {
+    return l > 0 && r < 0
 }
 
 func abs(x int) int {
