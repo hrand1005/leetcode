@@ -1,5 +1,5 @@
 func asteroidCollision(asteroids []int) []int {
-    var stack []int
+    stack := make([]int, 0, len(asteroids))
     for _, a := range asteroids {
         stack = simulateAsteroid(stack, a)
     }
