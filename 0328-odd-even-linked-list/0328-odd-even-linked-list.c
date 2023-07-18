@@ -16,7 +16,6 @@ struct ListNode* oddEvenList(struct ListNode* head){
     n = head->next->next;
     
     for (int i = 1; n != NULL; i++) {
-        printf("n: %d\n", n->val);
         if (i % 2 == 0) {
             even->next = n;
             even = even->next;
