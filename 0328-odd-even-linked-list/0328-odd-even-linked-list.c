@@ -13,7 +13,6 @@ struct ListNode* oddEvenList(struct ListNode* head){
     
     odd = head;
     evenh = even = head->next;
-    
     while (even != NULL && even->next != NULL) {
         odd->next = even->next;
         odd = odd->next;
